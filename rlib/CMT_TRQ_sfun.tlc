@@ -1,0 +1,47 @@
+%% File    : CMT_TRQ_sfun.tlc
+%% Abstract:
+%%      Inlined tlc file for S-function CMT_TRQ_sfun.c
+%%
+%% Copyright (c) 06/10/2016 by Wenjie Chen. All Rights Reserved.
+
+%implements "CMT_TRQ_sfun" "C"
+
+%% Function: BlockTypeSetup ====================================================
+%% Abstract:
+%%      Create function prototype in model.h as:
+%%      "extern void cmt_trq(double *q, double *qd, double *qdd, real_T *tau, int model_no);" 
+%%
+%function BlockTypeSetup(block, system) void
+  %% Add function prototype to model's header file
+  %<LibCacheFunctionPrototype...
+   ("extern void cmt_trq(double *q, double *qd, double *qdd, real_T *tau, int model_no);")>
+  %% Add file that contains "cmt_trq" to list of files to be compiled
+  %<LibAddToModelSources("CMT_TRQ")>
+%endfunction %% BlockTypeSetup
+
+%% Function: Outputs ===========================================================
+%% Abstract:
+%%      cmt_trq(double *q, double *qd, double *qdd, real_T *tau, int model_no);
+%%
+%function Outputs(block, system) Output
+  /* %<Type> Block: %<Name> */
+{
+  double q[6], qd[6], qdd[6];
+  real_T tau[6];
+  int model_no;
+
+    model_no = (int)%<LibBlockInputSignal(3, "", "", 0)>;
+
+    %foreach i = 6
+        q[%<i>] = %<LibBlockInputSignal(0, "", "", i)>;
+        qd[%<i>] = %<LibBlockInputSignal(1, "", "", i)>;
+        qdd[%<i>] = %<LibBlockInputSignal(2, "", "", i)>;
+    %endforeach
+
+    cmt_trq(q, qd, qdd, tau, model_no);
+          
+    %foreach i = 6
+        %<LibBlockOutputSignal(0, "", "", i)> = tau[%<i>];
+    %endforeach
+}
+%endfunction %% Outputs

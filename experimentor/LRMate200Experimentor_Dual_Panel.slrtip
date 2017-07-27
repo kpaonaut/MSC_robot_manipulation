@@ -1,0 +1,1524 @@
+
+  <Object type="Desktop.Xpc.Designer.InstrumentPanel, Desktop.Xpc.Designer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="I_Panel_1" children="Controls">
+    <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox14" children="Controls">
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox15" children="Controls">
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry31" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_6/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">305, 23</Property>
+          <Property name="Name">NumericEntry31</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry32" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_2/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">71, 23</Property>
+          <Property name="Name">NumericEntry32</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry33" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_3/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">130, 23</Property>
+          <Property name="Name">NumericEntry33</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry34" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_1/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">15, 23</Property>
+          <Property name="Name">NumericEntry34</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry35" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_4/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">187, 23</Property>
+          <Property name="Name">NumericEntry35</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry36" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_5/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">246, 23</Property>
+          <Property name="Name">NumericEntry36</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED41" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/TCP Pos Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Tcp Pos Run</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">106, 34</Property>
+          <Property name="Location">410, 18</Property>
+          <Property name="Name">SwitchLED41</Property>
+        </Object>
+        <Property name="Text">Tcp Pos Run</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">36, 275</Property>
+        <Property name="Name">GroupBox15</Property>
+        <Property name="Size">534, 59</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox16" children="Controls">
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED42" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/TpPos Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Jnt Pos Run</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">106, 34</Property>
+          <Property name="Location">410, 16</Property>
+          <Property name="Name">SwitchLED42</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry37" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_2/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">71, 23</Property>
+          <Property name="Name">NumericEntry37</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry38" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_3/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">130, 23</Property>
+          <Property name="Name">NumericEntry38</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry39" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_1/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">15, 23</Property>
+          <Property name="Name">NumericEntry39</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry40" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_4/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">187, 23</Property>
+          <Property name="Name">NumericEntry40</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry41" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_5/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">246, 23</Property>
+          <Property name="Name">NumericEntry41</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry42" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_6/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">305, 23</Property>
+          <Property name="Name">NumericEntry42</Property>
+        </Object>
+        <Property name="Text">Jnt Pos Run</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">36, 213</Property>
+        <Property name="Name">GroupBox16</Property>
+        <Property name="Size">535, 56</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label22" children="Controls">
+        <Property name="TextAlign">MiddleCenter</Property>
+        <Property name="Text">Robot 2 (Left)</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Font">Yu Gothic UI, 18pt, style=Bold</Property>
+        <Property name="ForeColor">Blue</Property>
+        <Property name="Location">63, 14</Property>
+        <Property name="Name">Label22</Property>
+        <Property name="Size">233, 43</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox17" children="Controls">
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry16" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/jogC_sign/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">1.1</Property>
+          <Property name="Minimum">-1.1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">59, 91</Property>
+          <Property name="Name">NumericalUpDownEntry16</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label23" children="Controls">
+          <Property name="Text">OVR</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">9, 25</Property>
+          <Property name="Name">Label23</Property>
+          <Property name="Size">48, 23</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label24" children="Controls">
+          <Property name="Text">J No.</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">9, 61</Property>
+          <Property name="Name">Label24</Property>
+          <Property name="Size">45, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry17" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/jogC_ovr/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Increment">5</Property>
+          <Property name="Minimum">5</Property>
+          <Property name="Value">5</Property>
+          <Property name="Location">59, 25</Property>
+          <Property name="Name">NumericalUpDownEntry17</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label25" children="Controls">
+          <Property name="Text">+/-</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">16, 96</Property>
+          <Property name="Name">Label25</Property>
+          <Property name="Size">42, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED43" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/JogC Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">JOG Cartesian</Property>
+          <Property name="Size">130, 40</Property>
+          <Property name="Location">19, 129</Property>
+          <Property name="Name">SwitchLED43</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry18" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/jogC_axis_num/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">6</Property>
+          <Property name="Minimum">1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">60, 58</Property>
+          <Property name="Name">NumericalUpDownEntry18</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Property name="Text">JOG (Cartesian)</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">551, 18</Property>
+        <Property name="Name">GroupBox17</Property>
+        <Property name="Size">168, 177</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox18" children="Controls">
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry19" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/jog_sign/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">1.1</Property>
+          <Property name="Minimum">-1.1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">63, 91</Property>
+          <Property name="Name">NumericalUpDownEntry19</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label26" children="Controls">
+          <Property name="Text">OVR</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">18, 29</Property>
+          <Property name="Name">Label26</Property>
+          <Property name="Size">42, 23</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label27" children="Controls">
+          <Property name="Text">J No.</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">14, 60</Property>
+          <Property name="Name">Label27</Property>
+          <Property name="Size">43, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry20" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/jog_ovr/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Increment">5</Property>
+          <Property name="Minimum">5</Property>
+          <Property name="Value">5</Property>
+          <Property name="Location">63, 25</Property>
+          <Property name="Name">NumericalUpDownEntry20</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label28" children="Controls">
+          <Property name="Text">+/-</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">20, 93</Property>
+          <Property name="Name">Label28</Property>
+          <Property name="Size">42, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED44" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/Jog Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">JOG Joint</Property>
+          <Property name="Size">130, 40</Property>
+          <Property name="Location">14, 129</Property>
+          <Property name="Name">SwitchLED44</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry21" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/jog_axis_num/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">6</Property>
+          <Property name="Minimum">1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">63, 58</Property>
+          <Property name="Name">NumericalUpDownEntry21</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Property name="Text">JOG (Joint)</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">356, 18</Property>
+        <Property name="Name">GroupBox18</Property>
+        <Property name="Size">180, 178</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox19" children="Controls">
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label51" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">ALARM</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">120, 280</Property>
+          <Property name="Name">Label51</Property>
+          <Property name="Size">61, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label29" children="Controls">
+          <Property name="Text">MODE</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">138, 17</Property>
+          <Property name="Name">Label29</Property>
+          <Property name="Size">54, 23</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label50" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">SVRE</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">122, 246</Property>
+          <Property name="Name">Label50</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED45" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/Device Control/Gripper Input/GPR_SVON/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">SVON</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">17, 34</Property>
+          <Property name="Name">SwitchLED45</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label49" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">SETON</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">122, 211</Property>
+          <Property name="Name">Label49</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry22" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/Device Control/Gripper Input/GPR_MODE/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">7</Property>
+          <Property name="Location">123, 43</Property>
+          <Property name="Name">NumericalUpDownEntry22</Property>
+          <Property name="Size">77, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label48" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">BUSY</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">122, 176</Property>
+          <Property name="Name">Label48</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED46" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/Device Control/Gripper Input/GPR_SETUP/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">SetUp</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">17, 80</Property>
+          <Property name="Name">SwitchLED46</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label47" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">ESTOP</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 280</Property>
+          <Property name="Name">Label47</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED47" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/Device Control/Gripper Input/GPR_HOLD/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Hold</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">123, 80</Property>
+          <Property name="Name">SwitchLED47</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label46" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">INP</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 246</Property>
+          <Property name="Name">Label46</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED48" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/Device Control/Gripper Input/GPR_RESET/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Reset</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">17, 126</Property>
+          <Property name="Name">SwitchLED48</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label45" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">AREA</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 211</Property>
+          <Property name="Name">Label45</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED49" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/Device Control/Gripper Input/GPR_DRIVE/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Drive</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">123, 126</Property>
+          <Property name="Name">SwitchLED49</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label44" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">MODE</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 176</Property>
+          <Property name="Name">Label44</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED18" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Rate Transition24</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 278</Property>
+          <Property name="Name">LED18</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED12" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Rate Transition16</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">74, 209</Property>
+          <Property name="Name">LED12</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED17" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Rate Transition13</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 244</Property>
+          <Property name="Name">LED17</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED13" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Rate Transition14</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">74, 244</Property>
+          <Property name="Name">LED13</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED16" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Rate Transition15</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 209</Property>
+          <Property name="Name">LED16</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED14" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Rate Transition12</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">74, 278</Property>
+          <Property name="Name">LED14</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericDisplay, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericDisplay2" children="Controls">
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Bit to Integer Converter</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">40, 29</Property>
+          <Property name="Location">63, 174</Property>
+          <Property name="Name">NumericDisplay2</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED15" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 2/Gripper Subsystem/Rate Transition17</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 174</Property>
+          <Property name="Name">LED15</Property>
+        </Object>
+        <Property name="Text">Gripper</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="BackColor">LightBlue</Property>
+        <Property name="Location">1214, 18</Property>
+        <Property name="Name">GroupBox19</Property>
+        <Property name="Size">222, 314</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox20" children="Controls">
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label35" children="Controls">
+          <Property name="Text">LTT Button</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">261, 283</Property>
+          <Property name="Name">Label35</Property>
+          <Property name="Size">82, 23</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label30" children="Controls">
+          <Property name="Text">LTT Gain</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">243, 75</Property>
+          <Property name="Name">Label30</Property>
+          <Property name="Size">67, 22</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label34" children="Controls">
+          <Property name="Text">Green Button</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">72, 283</Property>
+          <Property name="Name">Label34</Property>
+          <Property name="Size">100, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED50" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/ATI_Offset_Trigger/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">ForceSensor Offset</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 26</Property>
+          <Property name="Name">SwitchLED50</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED4" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Button/PCI-6528 DI Port 2/p2</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">30, 29</Property>
+          <Property name="Location">353, 279</Property>
+          <Property name="Name">LED4</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED3" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Button/PCI-6528 DI Port 2/p1</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">30, 29</Property>
+          <Property name="Location">183, 279</Property>
+          <Property name="Name">LED3</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry54" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/LTT_Rz/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 246</Property>
+          <Property name="Name">NumericEntry54</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry43" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/LTT_z/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 158</Property>
+          <Property name="Name">NumericEntry43</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry53" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/LTT_Ry/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 217</Property>
+          <Property name="Name">NumericEntry53</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED51" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/TpPrg Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Tilt Compensate</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="AutoSize">False</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 170</Property>
+          <Property name="Name">SwitchLED51</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry44" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/LTT_y/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 129</Property>
+          <Property name="Name">NumericEntry44</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED52" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/LTT Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Lead Through Teaching</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 75</Property>
+          <Property name="Name">SwitchLED52</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry52" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/LTT_Rx/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 188</Property>
+          <Property name="Name">NumericEntry52</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry45" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/LTT_x/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 100</Property>
+          <Property name="Name">NumericEntry45</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED53" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/Force Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Peg Hole Insertion</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 221</Property>
+          <Property name="Name">SwitchLED53</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label31" children="Controls">
+          <Property name="Text">RepF Gain</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">343, 75</Property>
+          <Property name="Name">Label31</Property>
+          <Property name="Size">78, 22</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED54" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/TI Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Tilted Insertion</Property>
+          <Property name="Size">195, 43</Property>
+          <Property name="Location">18, 126</Property>
+          <Property name="Name">SwitchLED54</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry46" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/Frep_z/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">343, 158</Property>
+          <Property name="Name">NumericEntry46</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED55" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/RepFCmd/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Repulsive Force</Property>
+          <Property name="Size">195, 40</Property>
+          <Property name="Location">243, 28</Property>
+          <Property name="Name">SwitchLED55</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry47" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/Frep_y/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">343, 129</Property>
+          <Property name="Name">NumericEntry47</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry48" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/LTT/Frep_x/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">343, 100</Property>
+          <Property name="Name">NumericEntry48</Property>
+        </Object>
+        <Property name="Text">Force Control</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="BackColor">Lavender</Property>
+        <Property name="Location">740, 18</Property>
+        <Property name="Name">GroupBox20</Property>
+        <Property name="Size">457, 314</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED56" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Pos Run &amp; Jog/RecordPos/Value</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">RecordPos</Property>
+        <Property name="Size">106, 36</Property>
+        <Property name="Location">593, 227</Property>
+        <Property name="Name">SwitchLED56</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED57" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 2/Robot System/Measurement/Tilt Angle Esimation/PanelREC/Value</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">PanelREC</Property>
+        <Property name="Size">106, 40</Property>
+        <Property name="Location">593, 285</Property>
+        <Property name="Name">SwitchLED57</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED64" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/TpPrg Run/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Tp Prg Run</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 45</Property>
+        <Property name="Location">28, 155</Property>
+        <Property name="Name">SwitchLED64</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED58" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/Hold/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Hold</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">197, 109</Property>
+        <Property name="Name">SwitchLED58</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED59" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/Reset Alarm/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Reset Alarm</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">197, 63</Property>
+        <Property name="Name">SwitchLED59</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED61" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/P-STOP/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">P-STOP</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">28, 109</Property>
+        <Property name="Name">SwitchLED61</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED62" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 2/Robot System/ModeSelection/Basic Control Mode/Brake Off/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Brake Off</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">28, 63</Property>
+        <Property name="Name">SwitchLED62</Property>
+      </Object>
+      <Property name="Text">Robot 2</Property>
+      <Property name="UseCompatibleTextRendering">True</Property>
+      <Property name="BackColor">Control</Property>
+      <Property name="Location">35, 366</Property>
+      <Property name="Name">GroupBox14</Property>
+      <Property name="Size">1452, 338</Property>
+    </Object>
+    <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox4" children="Controls">
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox11" children="Controls">
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry24" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_6/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">305, 23</Property>
+          <Property name="Name">NumericEntry24</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry19" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_2/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">71, 23</Property>
+          <Property name="Name">NumericEntry19</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry20" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_3/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">130, 23</Property>
+          <Property name="Name">NumericEntry20</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry21" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_1/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">15, 23</Property>
+          <Property name="Name">NumericEntry21</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry22" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_4/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">187, 23</Property>
+          <Property name="Name">NumericEntry22</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry23" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniTcpPos_5/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">246, 23</Property>
+          <Property name="Name">NumericEntry23</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED39" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/TCP Pos Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Tcp Pos Run</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">106, 34</Property>
+          <Property name="Location">410, 18</Property>
+          <Property name="Name">SwitchLED39</Property>
+        </Object>
+        <Property name="Text">Tcp Pos Run</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">36, 273</Property>
+        <Property name="Name">GroupBox11</Property>
+        <Property name="Size">534, 59</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox10" children="Controls">
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED9" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/TpPos Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Jnt Pos Run</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">106, 34</Property>
+          <Property name="Location">410, 16</Property>
+          <Property name="Name">SwitchLED9</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry2" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_2/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">71, 23</Property>
+          <Property name="Name">NumericEntry2</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry3" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_3/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">130, 23</Property>
+          <Property name="Name">NumericEntry3</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry1" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_1/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">15, 23</Property>
+          <Property name="Name">NumericEntry1</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry4" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_4/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">187, 23</Property>
+          <Property name="Name">NumericEntry4</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry5" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_5/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">246, 23</Property>
+          <Property name="Name">NumericEntry5</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry6" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/IniJntPos_6/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">53, 27</Property>
+          <Property name="Location">305, 23</Property>
+          <Property name="Name">NumericEntry6</Property>
+        </Object>
+        <Property name="Text">Jnt Pos Run</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">36, 211</Property>
+        <Property name="Name">GroupBox10</Property>
+        <Property name="Size">535, 56</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label20" children="Controls">
+        <Property name="TextAlign">MiddleCenter</Property>
+        <Property name="Text">Robot 1 (Right)</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Font">Yu Gothic UI, 18pt, style=Bold</Property>
+        <Property name="ForeColor">Blue</Property>
+        <Property name="Location">63, 14</Property>
+        <Property name="Name">Label20</Property>
+        <Property name="Size">233, 43</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox6" children="Controls">
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry6" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/jogC_sign/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">1.1</Property>
+          <Property name="Minimum">-1.1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">59, 91</Property>
+          <Property name="Name">NumericalUpDownEntry6</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label4" children="Controls">
+          <Property name="Text">OVR</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">9, 25</Property>
+          <Property name="Name">Label4</Property>
+          <Property name="Size">48, 23</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label6" children="Controls">
+          <Property name="Text">J No.</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">9, 61</Property>
+          <Property name="Name">Label6</Property>
+          <Property name="Size">45, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry7" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/jogC_ovr/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Increment">5</Property>
+          <Property name="Minimum">5</Property>
+          <Property name="Value">5</Property>
+          <Property name="Location">59, 25</Property>
+          <Property name="Name">NumericalUpDownEntry7</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label5" children="Controls">
+          <Property name="Text">+/-</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">16, 96</Property>
+          <Property name="Name">Label5</Property>
+          <Property name="Size">42, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED8" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/JogC Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">JOG Cartesian</Property>
+          <Property name="Size">130, 40</Property>
+          <Property name="Location">19, 129</Property>
+          <Property name="Name">SwitchLED8</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry8" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/jogC_axis_num/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">6</Property>
+          <Property name="Minimum">1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">60, 58</Property>
+          <Property name="Name">NumericalUpDownEntry8</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Property name="Text">JOG (Cartesian)</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">551, 18</Property>
+        <Property name="Name">GroupBox6</Property>
+        <Property name="Size">168, 177</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox5" children="Controls">
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry5" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/jog_sign/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">1.1</Property>
+          <Property name="Minimum">-1.1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">63, 91</Property>
+          <Property name="Name">NumericalUpDownEntry5</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label3" children="Controls">
+          <Property name="Text">OVR</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">18, 29</Property>
+          <Property name="Name">Label3</Property>
+          <Property name="Size">42, 23</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label1" children="Controls">
+          <Property name="Text">J No.</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">14, 60</Property>
+          <Property name="Name">Label1</Property>
+          <Property name="Size">43, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry3" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/jog_ovr/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Increment">5</Property>
+          <Property name="Minimum">5</Property>
+          <Property name="Value">5</Property>
+          <Property name="Location">63, 25</Property>
+          <Property name="Name">NumericalUpDownEntry3</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label2" children="Controls">
+          <Property name="Text">+/-</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">20, 93</Property>
+          <Property name="Name">Label2</Property>
+          <Property name="Size">42, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED1" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/Jog Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">JOG Joint</Property>
+          <Property name="Size">130, 40</Property>
+          <Property name="Location">14, 129</Property>
+          <Property name="Name">SwitchLED1</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry1" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/jog_axis_num/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">6</Property>
+          <Property name="Minimum">1</Property>
+          <Property name="Value">1</Property>
+          <Property name="Location">63, 58</Property>
+          <Property name="Name">NumericalUpDownEntry1</Property>
+          <Property name="Size">89, 27</Property>
+        </Object>
+        <Property name="Text">JOG (Joint)</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="Location">356, 18</Property>
+        <Property name="Name">GroupBox5</Property>
+        <Property name="Size">180, 178</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox2" children="Controls">
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label43" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">ALARM</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">120, 278</Property>
+          <Property name="Name">Label43</Property>
+          <Property name="Size">61, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label41" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">SVRE</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">122, 244</Property>
+          <Property name="Name">Label41</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label39" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">SETON</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">122, 209</Property>
+          <Property name="Name">Label39</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label37" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">BUSY</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">122, 174</Property>
+          <Property name="Name">Label37</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label42" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">ESTOP</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 278</Property>
+          <Property name="Name">Label42</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label40" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">INP</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 244</Property>
+          <Property name="Name">Label40</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label38" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">AREA</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 209</Property>
+          <Property name="Name">Label38</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label36" children="Controls">
+          <Property name="TextAlign">MiddleCenter</Property>
+          <Property name="Text">MODE</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">8, 174</Property>
+          <Property name="Name">Label36</Property>
+          <Property name="Size">55, 25</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED11" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Rate Transition24</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 276</Property>
+          <Property name="Name">LED11</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED9" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Rate Transition13</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 242</Property>
+          <Property name="Name">LED9</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED7" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Rate Transition15</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 207</Property>
+          <Property name="Name">LED7</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericDisplay, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericDisplay1" children="Controls">
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Bit to Integer Converter</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">40, 29</Property>
+          <Property name="Location">63, 172</Property>
+          <Property name="Name">NumericDisplay1</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED6" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Rate Transition17</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">183, 172</Property>
+          <Property name="Name">LED6</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED10" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Rate Transition12</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">74, 276</Property>
+          <Property name="Name">LED10</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED8" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Rate Transition14</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">74, 242</Property>
+          <Property name="Name">LED8</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED5" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Gripper System/Gripper 1/Gripper Subsystem/Rate Transition16</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">29, 29</Property>
+          <Property name="Location">74, 207</Property>
+          <Property name="Name">LED5</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label8" children="Controls">
+          <Property name="Text">MODE</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">138, 17</Property>
+          <Property name="Name">Label8</Property>
+          <Property name="Size">54, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED14" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/Device Control/Gripper Input/GPR_SVON/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">SVON</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">17, 34</Property>
+          <Property name="Name">SwitchLED14</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericalUpDownEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericalUpDownEntry9" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/Device Control/Gripper Input/GPR_MODE/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Maximum">7</Property>
+          <Property name="Location">123, 43</Property>
+          <Property name="Name">NumericalUpDownEntry9</Property>
+          <Property name="Size">77, 27</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED10" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/Device Control/Gripper Input/GPR_SETUP/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">SetUp</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">17, 80</Property>
+          <Property name="Name">SwitchLED10</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED11" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/Device Control/Gripper Input/GPR_HOLD/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Hold</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">123, 80</Property>
+          <Property name="Name">SwitchLED11</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED13" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/Device Control/Gripper Input/GPR_RESET/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Reset</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">17, 126</Property>
+          <Property name="Name">SwitchLED13</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED12" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/Device Control/Gripper Input/GPR_DRIVE/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Drive</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="Size">77, 40</Property>
+          <Property name="Location">123, 126</Property>
+          <Property name="Name">SwitchLED12</Property>
+        </Object>
+        <Property name="Text">Gripper</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="BackColor">LightBlue</Property>
+        <Property name="Location">1214, 18</Property>
+        <Property name="Name">GroupBox2</Property>
+        <Property name="Size">222, 314</Property>
+      </Object>
+      <Object type="System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="GroupBox3" children="Controls">
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label33" children="Controls">
+          <Property name="Text">LTT Button</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">261, 282</Property>
+          <Property name="Name">Label33</Property>
+          <Property name="Size">82, 23</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label32" children="Controls">
+          <Property name="Text">Green Button</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">72, 282</Property>
+          <Property name="Name">Label32</Property>
+          <Property name="Size">100, 23</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED2" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Button/PCI-6528 DI Port 1/p2</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">30, 29</Property>
+          <Property name="Location">353, 276</Property>
+          <Property name="Name">LED2</Property>
+        </Object>
+        <Object type="MW.Instruments.LED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="LED1" children="Controls">
+          <Property name="OutputValue">0</Property>
+          <Property name="BindingSrcObject" />
+          <Property name="BindingSrcType">Signal</Property>
+          <Property name="BindingSrcPath">IO System/Button/PCI-6528 DI Port 1/p1</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="Size">30, 29</Property>
+          <Property name="Location">183, 276</Property>
+          <Property name="Name">LED1</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label19" children="Controls">
+          <Property name="Text">LTT Gain</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">243, 75</Property>
+          <Property name="Name">Label19</Property>
+          <Property name="Size">67, 22</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED16" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/ATI_Offset_Trigger/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">ForceSensor Offset</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 26</Property>
+          <Property name="Name">SwitchLED16</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry51" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/LTT_Rz/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 246</Property>
+          <Property name="Name">NumericEntry51</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry16" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/LTT_z/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 158</Property>
+          <Property name="Name">NumericEntry16</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry50" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/LTT_Ry/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 217</Property>
+          <Property name="Name">NumericEntry50</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED7" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/TpPrg Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Tilt Compensate</Property>
+          <Property name="MomentaryStyle">Simple</Property>
+          <Property name="AutoSize">False</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 170</Property>
+          <Property name="Name">SwitchLED7</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry17" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/LTT_y/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 129</Property>
+          <Property name="Name">NumericEntry17</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry49" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/LTT_Rx/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 188</Property>
+          <Property name="Name">NumericEntry49</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED18" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/LTT Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Lead Through Teaching</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 75</Property>
+          <Property name="Name">SwitchLED18</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry18" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/LTT_x/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">243, 100</Property>
+          <Property name="Name">NumericEntry18</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED15" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/Force Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Peg Hole Insertion</Property>
+          <Property name="Size">195, 45</Property>
+          <Property name="Location">18, 221</Property>
+          <Property name="Name">SwitchLED15</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="Label18" children="Controls">
+          <Property name="Text">RepF Gain</Property>
+          <Property name="UseCompatibleTextRendering">True</Property>
+          <Property name="Location">343, 75</Property>
+          <Property name="Name">Label18</Property>
+          <Property name="Size">78, 22</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED22" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/TI Run/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Tilted Insertion</Property>
+          <Property name="Size">195, 43</Property>
+          <Property name="Location">18, 126</Property>
+          <Property name="Name">SwitchLED22</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry15" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/Frep_z/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">343, 158</Property>
+          <Property name="Name">NumericEntry15</Property>
+        </Object>
+        <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED38" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/RepFCmd/CurrentSetting</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Text">Repulsive Force</Property>
+          <Property name="Size">195, 40</Property>
+          <Property name="Location">243, 28</Property>
+          <Property name="Name">SwitchLED38</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry14" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/Frep_y/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">343, 129</Property>
+          <Property name="Name">NumericEntry14</Property>
+        </Object>
+        <Object type="MW.Instruments.NumericEntry, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="NumericEntry13" children="Controls">
+          <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/LTT/Frep_x/Value</Property>
+          <Property name="TargetName">TargetPC1</Property>
+          <Property name="BindingSrcType">Parameter</Property>
+          <Property name="Size">78, 27</Property>
+          <Property name="Location">343, 100</Property>
+          <Property name="Name">NumericEntry13</Property>
+        </Object>
+        <Property name="Text">Force Control</Property>
+        <Property name="UseCompatibleTextRendering">True</Property>
+        <Property name="BackColor">Lavender</Property>
+        <Property name="Location">740, 18</Property>
+        <Property name="Name">GroupBox3</Property>
+        <Property name="Size">457, 314</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED17" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Pos Run &amp; Jog/RecordPos/Value</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">RecordPos</Property>
+        <Property name="Size">106, 36</Property>
+        <Property name="Location">593, 225</Property>
+        <Property name="Name">SwitchLED17</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED19" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 1/Robot System/Measurement/Tilt Angle Esimation/PanelREC/Value</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">PanelREC</Property>
+        <Property name="Size">107, 40</Property>
+        <Property name="Location">593, 283</Property>
+        <Property name="Name">SwitchLED19</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED63" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/TpPrg Run/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Tp Prg Run</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 45</Property>
+        <Property name="Location">28, 155</Property>
+        <Property name="Name">SwitchLED63</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED2" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/Hold/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Hold</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">197, 109</Property>
+        <Property name="Name">SwitchLED2</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED4" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/Reset Alarm/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Reset Alarm</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">197, 63</Property>
+        <Property name="Name">SwitchLED4</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED3" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/P-STOP/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">P-STOP</Property>
+        <Property name="MomentaryStyle">Simple</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">28, 109</Property>
+        <Property name="Name">SwitchLED3</Property>
+      </Object>
+      <Object type="MW.Instruments.SwitchLED, mwio, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SwitchLED6" children="Controls">
+        <Property name="BindingSrcPath">Robot No. 1/Robot System/ModeSelection/Basic Control Mode/Brake Off/CurrentSetting</Property>
+        <Property name="TargetName">TargetPC1</Property>
+        <Property name="BindingSrcType">Parameter</Property>
+        <Property name="Text">Brake Off</Property>
+        <Property name="AutoSize">False</Property>
+        <Property name="Size">122, 40</Property>
+        <Property name="Location">28, 63</Property>
+        <Property name="Name">SwitchLED6</Property>
+      </Object>
+      <Property name="Text">Robot 1</Property>
+      <Property name="UseCompatibleTextRendering">True</Property>
+      <Property name="BackColor">Control</Property>
+      <Property name="Location">35, 22</Property>
+      <Property name="Name">GroupBox4</Property>
+      <Property name="Size">1452, 338</Property>
+    </Object>
+    <Property name="ClientSize">2048, 1152</Property>
+  </Object>

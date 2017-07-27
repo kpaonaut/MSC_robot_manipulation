@@ -1,0 +1,29 @@
+%% Open Ensenso
+nxOpenCam
+
+%% get xyz depth data and rgb data
+[camData.xyz, camData.rgba] = nxGetPtCld();  
+camData.xyz = permute(camData.xyz,[3,2,1]);
+camData.rgba = permute(camData.rgba,[3,2,1]);
+
+camData.rgb = nxGetRGBonly();  
+camData.rgb = permute(camData.rgb,[3,2,1]);
+
+%% transform xyz data into World frame (m)
+temp = reshape(camData.xyz/1000,1024*1280,3);
+camData.xyz_w = reshape(temp + repmat(si.CalibGridCenter_W, 1024*1280, 1), 1024,1280,3);
+
+%% detect ID and corners of Aruco marker
+[ids, corners, image_corner] = detectArucoCorner(camData.rgb);
+imshow(image_corner)
+%%
+ArucoMarker = ArucoProcess(ids, corners, image_corner , camData.xyz_w);
+
+%%
+indexfind(ArucoMarker.ids == 11)
+
+
+%%
+corner_x = round(corner(1,:,1));
+corner_y = round(corner(1,:,2));
+camData.xyz_w(corner_y(4),corner_x(4),:)

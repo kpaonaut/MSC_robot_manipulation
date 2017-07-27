@@ -1,0 +1,75 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                 FANUC LRMate200iD/7L Robot CFS Simulator Quick Guide
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                Created by Hsien-Chung Lin during FANUC internship in 2016
+%                Based on Changliu's CFS algorithm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Required toolbox:
+  1. Robotic Toolbox 9.8 or later version
+
+----------------------------------------------------------------------------------------
+
+Instruction:
+- Environment Setting (if any changes in workspace):
+  1. update "InitSim" in folder "init" if you have any workspace changes
+  2. update "robot.base", "robot.R_B2DS" in "robotproperty" in folder "Lib"
+  3. update "R_B2DS" in "DrawBlock" in folder"Visualization"
+  4. update the new ".mat" files of workspace, block, robot in folder "figure"
+
+- Visualization Setting:
+  1. modify "InitDrawOpt" in folder "init", please see the file for further
+     information.
+ 
+- Run CFS Path Planning:
+  1. Run "Main.m" to execute the simulation
+  2. See the visualization result
+  3. The extcmd is saved in the folder defined by "extcmdfilepath", and is 
+     ready to upload for the robot experimentor.
+
+----------------------------------------------------------------------------------------
+CFS parameter setting:
+  1. robot (Lib\robotproperty.m)
+      (1) robot.margin  :   safety margin to obstacles
+      (2) robot.cap     :   robot capsule feature points and its radius
+
+  2. block (Motion\buildBlkObs.m)
+      (1) Please see the file for more information, and update the specification
+          if necessary.
+      (2) For the taping tool, please also see "calculateTapeToolPos" in the same 
+          folder
+  3. costFn, constFn (CFSplanner\costFn_Dual.m, costFn_Dual.m)
+      (1) Please see the file for more information, and modify them if needed.     
+----------------------------------------------------------------------------------------
+Import Data Format:
+  1. Motion Primitive Combination (e.g. "OrangeLine", "GreenLine")
+     Contains several "LTT_Data_(motion).mat", each one has:
+      (1) DesJntPos  : [1x2 cell], each cell is [Nx6], N robot desired joint position 
+      (2) ReplayTime : [1x2 cell], each cell is [N-1], N-1 time vector
+      (3) GrpCmd     : [1x2 cell], each cell is[Nx6], N robot gripper command
+      (4) Marker_T_W : [4x4] or empty, AR tag's transformation matrix in world frame
+     See "Motion\loadLTTMotion2.m" for more details.
+
+  2. Robot Current Pose (e.g. "TapeCuttingApproach")
+     The Data should contains:
+      (1) qVec        : robot joint pos
+      (2) rbt_pos.jnt : two robot init jnt pos
+      (3) tVec        : TimeVec
+     See "Motion\loadGeneralMotion.m" for more details. 
+     It might be updated in the future.
+----------------------------------------------------------------------------------------
+Folder (sort by alphbet)
+1.  CFSplanner    : the CFS solver   
+2.  dataExtCmd    : the local export extcmd
+3.  dataLTT       : the local import data
+4.  datareplay    : the replay motion data, use "ReplayViz.m" to replay
+5.  DERIVESTsuite : the numerical derivative function
+6.  distance      : the distance calculation function
+7.  doc           : documentation
+8.  figure        : the workspace, blocks, robot CAD model
+9.  init          : the simulation parameters initialization
+10. Lib           : the original Changliu's code
+11. mat           : copied CAD models
+12. Motion        : load LTT motion, generate the input path for CFS
+13. TrajGen       : generate trajectory and extcmd
+13. Visualization : the visualization toolkit
