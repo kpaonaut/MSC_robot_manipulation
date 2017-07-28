@@ -52,7 +52,7 @@ else  % if Least Square Method doesn't works, then use CPD method
 end
 clear y distance cost
 
-%% Main Step % four steps in total for a rope-knotting process
+%% Main Step % four steps in total for a rope-knotting process -WR
 RopeStep=state;
 while RopeStep<=4
     % U: ubuntu coord, the kinect coord; W: world frame; B: robot frame -WR
