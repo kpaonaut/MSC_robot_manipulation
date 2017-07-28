@@ -14,6 +14,9 @@ received_data = receive(sub,3); % wait for at most 3 seconds.
 points = received_data.Rope.Nodes; % N*1 vector, each element: .X, .Y, .Z
 N = size(points,1); % total num of nodes on a rope
 
+%% Now, we need to get the tangent info of all nodes from TSM_RPM, use EM to get a non-rigid transform that minimizes the cost of TSM_RPM
+
+
 %% Finally run the robot
 rigidCompensate = 0;
 [Z_Data_Test2, warp] = LTT_Warping_CPD(LTT_Data_Train, points_W(:,1:2), points_Test_W(:,1:2), si , '2D', WarpIndex, rigidCompensate);
