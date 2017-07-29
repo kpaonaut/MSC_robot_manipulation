@@ -12,6 +12,7 @@ rosinit()
 %% Brake Off
 wasStopped = tg_start_stop('start');
 wasBrakeOff = brake_on_off(si.ParamSgnID, 'off');
+clear LTT_Data_Train LTT_Data_Test  Z_Data_Test2 points_U points_W points_Test_U points_Test_W % clear related data
 
 %% Subsribe to ROS topic
 sub = rossubscriber('tracker/object'); % your PC, as ros master, should be publishing this topic (tracked obj) now
@@ -46,7 +47,7 @@ LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
 LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
 
 %% CPD-Warp the robot trajectory
-rigidCompensate = 0;  % ???
+rigidCompensate = 0;  % 0 or 1. 0: no rotation; 1: allow rigid rotation first
 [Z_Data_Test2, warp] = LTT_Warping_CPD(LTT_Data_Train, points_W(:, 1 : 2), points_Test_W(:, 1 : 2), si , '2D', WarpIndex, rigidCompensate);
 % Warping original rope to current rope finished!
 
