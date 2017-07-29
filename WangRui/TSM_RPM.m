@@ -15,6 +15,7 @@ points = received_data.Rope.Nodes; % N*1 vector, each element: .X, .Y, .Z
 N = size(points,1); % total num of nodes on a rope
 
 %% Now, we need to get the tangent info of all nodes from TSM_RPM, use EM to get a non-rigid transform that minimizes the cost of TSM_RPM
+% first, try to get the info of the tangent of a rope from bullet physics library!
 
 
 %% Finally run the robot

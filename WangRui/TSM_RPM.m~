@@ -14,7 +14,8 @@ received_data = receive(sub,3); % wait for at most 3 seconds.
 points = received_data.Rope.Nodes; % N*1 vector, each element: .X, .Y, .Z
 N = size(points,1); % total num of nodes on a rope
 
-%% Now, we need to get the tangent info of all nodes from TSM_RPM
+%% Now, we need to get the tangent info of all nodes from TSM_RPM, use EM to get a non-rigid transform that minimizes the cost of TSM_RPM
+% first, try to get the info of the tangent of a rope!
 
 
 %% Finally run the robot
