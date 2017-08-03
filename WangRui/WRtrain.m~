@@ -11,17 +11,14 @@ for i=1:N
         points_U(i,3)=points(i).Z;
 end
 % !!! Naming convention:
-% 'Rope_idx1_num2', where
-% idx1 indicates the index of the robot, namely, this pic in training is taken
-% for which robot to warp in testing;
-% num2 indicates the index of the step, namely, the index for this pic in
-% this robot's all training pics.
-save('F:\WANGRUI\V4.0\data\Rope\Rope_idx1_num2.mat', 'points_U');
-% !!!!! IN typical TSM-RPM, should store 2 pics for robot 1 and 2 pics for robot 2!
+% 'Rope_num1_num2', where
+% num
+save('F:\WANGRUI\V4.0\data\Rope\***.mat', 'points_U');
+
 %% record the teaching trajectory
 LTT_Data_Train = Load_LTT(si);
 LTT_Data_Train = LTT_Data_Refine(LTT_Data_Train, si);
-save('F:\WANGRUI\V4.0\data\Rope\Traj_Train.mat','LTT_Data_Train');
+save('F:\WANGRUI\V4.0\data\Rope\Traj_Train_Straightening.mat','LTT_Data_Train');
 % save('F:\TeTang\V4.0\data\Rope\received_data.mat','received_data')
 %% show the teaching trajectory
     disp('======================================================================');

@@ -9,7 +9,7 @@ k = 2;
 criticalSteps = 1; % --SUBJECT TO CHANGE; the total times of rope deformation
 global LENGTH; LENGTH = 20; % -SUBJECT TO CHANGE; unit: mm
 WarpIndex = [1, 2]; % WarpIndex can be 1, 2, or [1, 2] --SUBJECT TO CHANGE
-% totalPics = [2, 2]; % --SUBJECT TO CHANGE, the total pics for robot 1 and robot 2
+totalPics = [2, 2]; % --SUBJECT TO CHANGE, the total pics for robot 1 and robot 2
 LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
 LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
 
@@ -40,7 +40,7 @@ points_W_Goal = transformU2W(points_U_Goal); % training rope transformed
 totalSteps = size(LTT_Data_Train.GrpCmd{1}, 1);
 
 % Find the grasping point at training
-[graspPts, MoveOrNot] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W, points_W_Goal);
+[graspPts, GraspOrNot] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W_All);
 % graspPts{idx}(i) is the index of rope node closest to grasping
 % point during grasping step i for robot idx IF GraspOrNot
 
@@ -55,9 +55,12 @@ for step = 1 : criticalSteps
     points_Test_U = [[points.X]', [points.Y]', [points.Z]'];
     points_Test_W = transformU2W(points_Test_U);
 
+    if GraspOrNot(step) == 0:
+        
+    end
     % TSM-RPM-Warp the robot trajectory
     [LTT_Data_Test, warp] = TSM_RPM_Warp...
-        (LTT_Data_Train, points_W, points_W_Goal, points_Test_W, si, WarpIndex, graspPts(step), MoveOrNot);
+        (LTT_Data_Train, points_W, points_W_Goal, points_Test_W, si, WarpIndex, step, graspPts(step));
 
     disp('Please double check which robot''s motion needs to be warped!');
     % Use the traj above to generate excecutable LTT_Data_Test series:
