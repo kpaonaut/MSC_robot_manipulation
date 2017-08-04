@@ -1,4 +1,11 @@
-function [closestPts, MoveOrNot] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     FANUC LRMate200iD/7L Robot Experimentor
+%  Find the closest grasping node on rope for TSM-RPM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Created by Rui Wang, 08/03/2017       
+%  MSC Lab, UC Berkeley
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [closestPts, MoveOrNot] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W, points_W_Goal)
 % first set grip state representatives
 gripKeep  = [0 0 0 0 0 1]; % under this state, the grip does not change
 gripClose = [3 0 0 1 0 1]; % under this state, the grip closes
@@ -24,10 +31,12 @@ for idx = WarpIndex
     end
     MoveOrNot{idx} = 0; % all steps default to zero
     for step = 2 : totalSteps
-        prevxyz = LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:3);
+        prevxyz = LTT_Data_Train.TCP_xyzwpr_W{idx}(step - 1, 1:3);
         xyz = LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:3);
-        if (norm(xyz - prevxyz) > 10) and (gripOrNot{idx}(step) = 1) % is gripping and moving rope
+        if norm(xyz - prevxyz) > 50 && gripOrNot{idx}(step) == 1 % is gripping and moving rope
             MoveOrNot{idx}(step) = 1;
+        else
+            MoveOrNot{idx}(step) = 0;
         end
     end
     % If MoveOrNot{idx}(step) == 1, the (x, y) coord of gripper should be
@@ -39,14 +48,12 @@ for idx = WarpIndex
 %         closestPts{idx}(step, :) = dsearchn(points_W{idx, num}, ...
 %             delaunayTriangulation(points_W{idx, num}), ...
 %             LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:2)); % built-in matlab func for closest pt
-        num = picIdx(step); % the index of the stored rope for gripper of this state to compare with
+%         num = picIdx(step); % the index of the stored rope for gripper of this state to compare with
         if MoveOrNot{idx}(step) == 1
             points_W = points_W_Goal;
         end
-        closestPts{idx}(step, :) = dsearchn(points_W, ...
-            delaunayTriangulation(points_W), ...
+        closestPts{idx}(step, :) = dsearchn(points_W(:, 1:2), ...
         LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:2)); % built-in matlab func for closest pt
-        
         % points_W{idx, num} stores the whole rope, for robot No.idx's
         % No.num step
     end

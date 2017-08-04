@@ -1,3 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     FANUC LRMate200iD/7L Robot Experimentor
+%  TSM-RPM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Created by Rui Wang, 08/03/2017       
+%  MSC Lab, UC Berkeley
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Comunication with Ubuntu
 % Run the following commands after setting up your PC's ros master IP, and connecting it to kinect
 setenv('ROS_MASTER_URI','http://192.168.1.40:11311')
@@ -7,7 +14,7 @@ rosinit()
 %% General Configuration
 k = 2;
 criticalSteps = 1; % --SUBJECT TO CHANGE; the total times of rope deformation
-global LENGTH; LENGTH = 20; % -SUBJECT TO CHANGE; unit: mm
+global LENGTH; LENGTH = 0.02; % -SUBJECT TO CHANGE; unit: m
 WarpIndex = [1, 2]; % WarpIndex can be 1, 2, or [1, 2] --SUBJECT TO CHANGE
 % totalPics = [2, 2]; % --SUBJECT TO CHANGE, the total pics for robot 1 and robot 2
 LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
@@ -19,11 +26,9 @@ load('F:\WANGRUI\V4.0\data\Rope\Traj_Train.mat'); % load the training trajectory
 % load all training ropes:
 load('F:\WANGRUI\V4.0\data\Rope\Rope_Start.mat'); % load the training data of trajectory
 % transform points from kinect frame to world frame
-points_U = [[points.X]', [points.Y]', [points.Z]']; % convert points(i).X,Y,Z to points_T_U(i, 1,2,3)
-points_W = transformU2W(points_U); % training rope transformed
+points_W = transformU2W(points_U, si); % training rope transformed
 load('F:\WANGRUI\V4.0\data\Rope\Rope_Goal.mat');
-points_U_Goal = [[points.X]', [points.Y]', [points.Z]']; % convert points(i).X,Y,Z to points_T_U(i, 1,2,3)
-points_W_Goal = transformU2W(points_U_Goal); % training rope transformed
+points_W_Goal = transformU2W(points_U, si); % training rope transformed
 
 % load all training ropes?:
 % for idx1 = WarpIndex
@@ -53,11 +58,11 @@ for step = 1 : criticalSteps
     points = received_data.Rope.Nodes; % N*1 vector, each element: .X, .Y, .Z
     % transform test rope to world frame
     points_Test_U = [[points.X]', [points.Y]', [points.Z]'];
-    points_Test_W = transformU2W(points_Test_U);
+    points_Test_W = transformU2W(points_Test_U, si);
 
     % TSM-RPM-Warp the robot trajectory
     [LTT_Data_Test, warp] = TSM_RPM_Warp...
-        (LTT_Data_Train, points_W, points_W_Goal, points_Test_W, si, WarpIndex, graspPts(step), MoveOrNot);
+        (LTT_Data_Train, LTT_Data_Test, points_W, points_W_Goal, points_Test_W, si, WarpIndex, graspPts, MoveOrNot);
 
     disp('Please double check which robot''s motion needs to be warped!');
     % Use the traj above to generate excecutable LTT_Data_Test series:

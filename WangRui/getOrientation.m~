@@ -1,7 +1,0 @@
-function points_test_q = getOrientation(points_train, m)
-points_train_q = getQ(points_train); % extract tangent space from cartesian space
-points_test_q = m'(1 : size(m, 2)-1, 1 : size(m, 1)-1) * points_train_q;
-x = linspace(size(q));
-plot(points_train_q);
-% m has additional rows and columns to deal with outliers
-end
