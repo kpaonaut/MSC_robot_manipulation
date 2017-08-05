@@ -6,7 +6,7 @@
 %  MSC Lab, UC Berkeley
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [LTT_Data_Test_New] = TSM_RPM_Warp...
-    (LTT_Data_Train, LTT_Data_Test, points_train_W, points_train_W_goal, points_Test_W, si, WarpIndex, graspPts, MvOrNot, stepBegin, stepEnd)
+    (LTT_Data_Train, LTT_Data_Test, points_train_W, points_train_W_goal, points_Test_W, si, WarpIndex, graspPts, ManOrNot, stepBegin, stepEnd)
 % MvOrNot == -1: move to a target without grasping; 1: move with grasping, i.e. manipulate; 0: do not move
 % step: which step in LTT_Data_Test to create (to define the (x, y) position)
 % opt == 0: space warp, not follow rope node; opt == 1: follow a point on rope
@@ -31,9 +31,12 @@ for idx = WarpIndex
     % FIXME: In this way, the direction of the gripper will never change,
     % which is wrong (but can work most of the time). Refer to TT's version of warping.
     for j = stepBegin : stepEnd % step range in one critical step
-        if MvOrNot{idx}(j) == 0 % if a robot is neither moving to a point nor manipulating
-            % stays still, same as LTT_Train_Data
-        elseif MvOrNot{idx}(j) == -1 % if the robot aims at a static point on rope
+        if ManOrNot{idx}(j) == 0 % if a robot is neither moving to a point nor manipulating
+            % stays still
+            if j ~= 1
+                LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = LTT_Data_Test.TCP_xyzwpr_W{idx}(j - 1, 1:2);
+            end
+        elseif ManOrNot{idx}(j) == -1 % if the robot aims at a static point on rope
             graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
             [~, graspPtTest] = max(m(graspPtTrain, :)); % the index of grasping pt in test | M(i, j) maximal
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(graspPtTest, 1:2) * 1000; % ! in LTT, all data unit is mm

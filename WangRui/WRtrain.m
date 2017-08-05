@@ -4,20 +4,19 @@ sub=rossubscriber('tracker/object');
 received_data = receive(sub,3); 
 points = received_data.Rope.Nodes;
 %load('F:\WANGRUI\V4.0\data\Rope\Straightening.mat') ;%·only use during the test
-points_U = [[points.X]', [points.Y]', [points.Z]']; % convert points(i).X,Y,Z to points_T_U(i, 1,2,3)
-% !!! Naming convention:
-% 'Rope_idx1_num2', where
-% idx1 indicates the index of the robot, namely, this pic in training is taken
-% for which robot to warp in testing;
-% num2 indicates the index of the step, namely, the index for this pic in
-% this robot's all training pics.
-save('F:\WANGRUI\V4.0\data\Rope\Rope_Goal.mat', 'points_U');
-% !!!!! IN typical TSM-RPM, should store 2 pics for robot 1 and 2 pics for robot 2!
+N=size(points,1);
+for i=1:N
+        points_U(i,1)=points(i).X;
+        points_U(i,2)=points(i).Y;
+        points_U(i,3)=points(i).Z;
+end
+save('F:\WANGRUI\V4.0\data\Rope\TSM_RPM_rope.mat', 'points_U');
+
 %% record the teaching trajectory
 LTT_Data_Train = Load_LTT(si);
 LTT_Data_Train = LTT_Data_Refine(LTT_Data_Train, si);
 save('F:\WANGRUI\V4.0\data\Rope\Traj_Train.mat','LTT_Data_Train');
-% save('F:\TeTang\V4.0\data\Rope\received_data.mat','received_data')
+
 %% show the teaching trajectory
     disp('======================================================================');
     fig1_handle = figure(2);

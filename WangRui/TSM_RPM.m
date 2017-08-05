@@ -16,42 +16,31 @@ k = 2;
 criticalSteps = 1; % --SUBJECT TO CHANGE; the total times of rope deformation
 global LENGTH; LENGTH = 0.02; % -SUBJECT TO CHANGE; unit: m
 WarpIndex = [1, 2]; % WarpIndex can be 1, 2, or [1, 2] --SUBJECT TO CHANGE
-% totalPics = [2, 2]; % --SUBJECT TO CHANGE, the total pics for robot 1 and robot 2
-LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
-LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
 
 %% Load all training data and transform them into the world frame
 load('F:\WANGRUI\V4.0\data\Rope\Traj_Train.mat'); % load the training trajectory
 
 % load all training ropes:
-load('F:\WANGRUI\V4.0\data\Rope\Rope_Start.mat'); % load the training data of trajectory
+for i = 1 : criticalSteps + 1
+load(['F:\WANGRUI\V4.0\data\Rope\Rope_',num2str(i),'.mat']); % load the training data of trajectory
 % transform points from kinect frame to world frame
-points_W = transformU2W(points_U, si); % training rope transformed
-load('F:\WANGRUI\V4.0\data\Rope\Rope_Goal.mat');
-points_W_Goal = transformU2W(points_U, si); % training rope transformed
+points_W{i} = transformU2W(points_U, si); % training rope transformed
+end
 
-% load all training ropes?:
-% for idx1 = WarpIndex
-%     for num2 = 1 : totalPics(idx1)
-%         load('F:\WANGRUI\V4.0\data\Rope\Rope_',num2str(idx1),'_',num2str(num2),'.mat'); % load the training data of trajectory
-%         % transform points from kinect frame to world frame
-%         points_U = [[points.X]', [points.Y]', [points.Z]']; % convert points(i).X,Y,Z to points_T_U(i, 1,2,3)
-%         points_W = transformU2W(points_U); % training rope transformed
-%         points_W_All{idx1, num2} = points_W(:, 1:2); % stores all training ropes pictures! only 2D
-%     end
-% end
+LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
+LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
 
 %% Generate trajectory
 totalSteps = size(LTT_Data_Train.GrpCmd{1}, 1);
 
 % Find the grasping point at training; also records rope and gripper state in each step
-[graspPts, MvOrNot, picIdx, stepBegin] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W, points_W_Goal);
+[graspPts, ManOrNot, picIdx, stepBegins] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W);
 % graspPts{idx}(i) is the index of rope node closest to grasping point during grasping step i for robot idx IF GraspOrNot
-% stepBegin is the first small step of a critical step
+% stepBegins is the first small step of a critical step
 
 %%
 LTT_Data_Test = LTT_Data_Train; % temporarily init
-stepBegin(criticalSteps + 1) = totalSteps + 1; 
+stepBegins(criticalSteps + 1) = totalSteps + 1; 
 for step = 1 : criticalSteps
     % Subsribe to ROS topic
     sub = rossubscriber('tracker/object'); % your PC, as ros master, should be publishing this topic (tracked obj) now
@@ -62,20 +51,20 @@ for step = 1 : criticalSteps
     points_Test_W = transformU2W(points_Test_U, si);
 
     % TSM-RPM-Warp the robot trajectory
-    sb = stepBegin(step);
-    se = stepBegin(step + 1) - 1;
+    sb = stepBegins(step);
+    se = stepBegins(step + 1) - 1;
     [LTT_Data_Test] = TSM_RPM_Warp...
         (LTT_Data_Train, LTT_Data_Test, points_W{step}, points_W{step + 1},...
-        points_Test_W, si, WarpIndex, graspPts, MvOrNot, sb, se);
+        points_Test_W, si, WarpIndex, graspPts, ManOrNot, sb, se);
 
     disp('Please double check which robot''s motion needs to be warped!');
     % Use the traj above to generate excecutable LTT_Data_Test series:
 
-    % visualize the warping of the original training rope and the test rope
-    fig3_handle = figure(3);
-    set(fig3_handle, 'position', [962 562 958 434]);
-    orig_fig = subplot(1,2,1); scatter(points_start(:, 1), points_start(:, 2), 'r*'); title('Train'); % plot the original rope 2-D shape
-    warp_fig = subplot(1,2,2); scatter(points_Test_W(:, 1), points_Test_W(:, 2), 'r*'); title('Test'); % plot the test rope
+%     % visualize the warping of the original training rope and the test rope
+%     fig3_handle = figure(3);
+%     set(fig3_handle, 'position', [962 562 958 434]);
+%     orig_fig = subplot(1,2,1); scatter(points_start(:, 1), points_begins(:, 2), 'r*'); title('Train'); % plot the original rope 2-D shape
+%     warp_fig = subplot(1,2,2); scatter(points_Test_W(:, 1), points_Test_W(:, 2), 'r*'); title('Test'); % plot the test rope
 
     %% Run CFS, which displays an animation of fanuc robot following designed trajectory
     disp('======================================================================')
