@@ -9,7 +9,7 @@
 %  instead of using real angle (which is hard to get)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function q = getQ(points)
+function q = getQ(points) % 2D points
 q = zeros(size(points, 1), 1); % init q, allocate space
 for i = 1 : size(q, 1) - 1
     dx = points(i + 1, 1) - points(i, 1);

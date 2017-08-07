@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%     FANUC LRMate200iD/7L Robot Experimentor
-%  Generate the orientation of the rope in test by TSM-RPM
+%  Generate the orientation of the testing rope in test by TSM-RPM
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Created by Rui Wang, 08/02/2017       
 %  MSC Lab, UC Berkeley
