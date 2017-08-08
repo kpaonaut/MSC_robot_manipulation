@@ -50,37 +50,27 @@ for step = 1 : criticalSteps
     points_Test_U = [[points.X]', [points.Y]', [points.Z]'];
     points_Test_W = transformU2W(points_Test_U, si);
 
-    % TSM-RPM-Warp the robot trajectory
+    % CPD-Warp the robot trajectory in tangent space
     sb = stepBegins(step);
-    se = stepBegins(step + 1) - 1;
-    
-%     [LTT_Data_Test] = TSM_RPM_Warp...
-%         (LTT_Data_Train, LTT_Data_Test, points_W{step}, points_W{step + 1},...
-%         points_Test_W, si, WarpIndex, graspPts, ManOrNot, sb, se);
-    
+    se = stepBegins(step + 1) - 1;       
     rigidCompensate = 0;  % 0 or 1, whether we will use rigid transform (rotation) first
     points_train_q = getQ(points_W{step}(:, 1 : 2));
     points_test_q = getQ(points_Test_W(:, 1 : 2));
     ts_train = [(1 : size(points_train_q, 1))', points_train_q]; % tangent space, convert q info into a 2D graph
     ts_test = [(1 : size(points_test_q, 1))', points_test_q];
-    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, ts_train, ts_test, si , '2D', WarpIndex, rigidCompensate);
+    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd);
     % Warping original rope to current rope finished!
 
+    % visualize the warping of the original training rope and the test rope
     disp('Please double check which robot''s motion needs to be warped!');
     fig2_handle = figure(2);
     set(fig2_handle, 'position', [962 562 958 434]);
-
-    % visualize the warping of the original training rope and the test rope
-    fig3_handle = figure(3);
-    set(fig3_handle, 'position', [962 562 958 434]);
     orig_fig = subplot(1,2,1); scatter(points_W(:, 1), points_W(:, 2), 'r*'); title('Train'); % plot the original rope 2-D shape
     warp_fig = subplot(1,2,2); scatter(points_Test_W(:, 1), points_Test_W(:, 2), 'r*'); title('Test'); % plot the test rope
     draw_grid([-0.5 0.8], [1 -0.7], warp, 20, orig_fig, warp_fig)
     subplot(orig_fig); axis equal; xlim([-0.5,1]); ylim([-0.7,0.8]); drawnow;
     subplot(warp_fig); axis equal; xlim([-0.5,1]); ylim([-0.7,0.8]); drawnow; % plote the grid
-
     disp('Please double check which robot''s motion needs to be warped!');
-    % Use the traj above to generate excecutable LTT_Data_Test series:
 
     %% Run CFS, which displays an animation of fanuc robot following designed trajectory
     disp('======================================================================')

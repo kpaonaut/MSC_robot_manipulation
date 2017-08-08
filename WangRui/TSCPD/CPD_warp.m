@@ -6,8 +6,10 @@
 %  MSC Lab, UC Berkeley
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, PtCld_Train, PtCld_Test, si, dim, robot_idx, rigidCompensate)
+function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, points_Test_W, PtCld_Train, PtCld_Test, si, ...
+    robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd)
 
+% actually PtCld_Train and PtCld_Test are degrees here! in tangent space!
 
 %% specify which arm to warp
 if nargin < 6
@@ -51,19 +53,34 @@ if rigidCompensate == true
 end
 
 %% create New_LTT_Data after warping
-LTT_Data_Test = LTT_Data_Train;
-LTT_Data_Test.PtCld = PtCld_Test;
 for i = robot_idx
-    for j = 1:size(LTT_Data_Train.TCP_T_W{i},3)
-        if strcmp(dim, '3D')
-            LTT_Data_Test.TCP_T_W{i}(:,:,j) = TPS_warp_T(LTT_Data_Train.TCP_T_W{i}(:,:,j), warp);
-        elseif strcmp(dim, '2D')
-            LTT_Data_Test.TCP_T_W{i}(:,:,j) = TPS_warp_T_2D(LTT_Data_Train.TCP_T_W{i}(:,:,j), warp);
+    for j = stepBegin : stepEnd % step range in one critical step
+        if ManOrNot{idx}(j) == 0 % if a robot is neither moving to a point nor manipulating
+            % stays still
+            if j ~= 1
+                LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = LTT_Data_Test.TCP_xyzwpr_W{idx}(j - 1, 1:2);
+            end
+        elseif ManOrNot{idx}(j) == -1 % if the robot aims at a static point on rope
+            graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
+            graspPtTest = warp(PtCld_Train(graspPtTrain)); % the TS coord of cpd-warped grasping pt
+            num = dsearchn(PtCld_Test(:, 1:2), graspPtTest); % the index of the closest point in TS
+            LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(num, 1:2) * 1000; % unit must be mm!
+        else % if the robot is to manipulate the rope
+            num = graspPts{idx}(j); % index of grasping points here!
+            % FIXME! if one part of the rope is fixed by the other gripper,
+            % should integrate from it. otherwise do the below:
+            if num > size(PtCld_Test, 1) / 2 % FIXME! grasp at near the end. integrate from the start
+                grippingPointCoord = integrate...
+                    (points_Test_W(1, 1:2), PtCld_Test, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
+            else % grasp at near the starting point, integrate from end. q also needs to change!
+                grippingPointCoord = integrate...
+                    (points_Test_W(end, 1:2), PtCld_Test - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
+            end
+            LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = grippingPointCoord * 1000; % unit must be mm!    
         end
-        LTT_Data_Test.TCP_xyzwpr_W{i}(j,:) = T2xyzwpr(LTT_Data_Test.TCP_T_W{i}(:,:,j));
-        LTT_Data_Test.TCP_T_B{i}(:,:,j) = FrameTransform(LTT_Data_Test.TCP_T_W{i}(:,:,j), 'T', 'W2B', si, i);
-        LTT_Data_Test.TCP_xyzwpr_B{i}(j,:) = T2xyzwpr(LTT_Data_Test.TCP_T_B{i}(:,:,j));
-        % Joint Position
-        LTT_Data_Test.DesJntPos{i}(j,:) = fanucikine(LTT_Data_Test.TCP_xyzwpr_B{i}(j,:), si.ri{i}, LTT_Data_Train.DesJntPos{i}(j,:));
+        LTT_Data_Test.TCP_T_W{idx}(:, :, j) = xyzwpr2T(LTT_Data_Test.TCP_xyzwpr_W{idx}(j, :));
+        LTT_Data_Test.TCP_T_B{idx}(:, :, j) = FrameTransform(LTT_Data_Test.TCP_T_W{idx}(:, :, j), 'T', 'W2B', si, idx);
+        LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :) = T2xyzwpr(LTT_Data_Test.TCP_T_B{idx}(:, :, j));
+        LTT_Data_Test.DesJntPos{idx}(j, :) = fanucikine(LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :), si.ri{idx}, LTT_Data_Train.DesJntPos{idx}(j, :));
     end
 end
