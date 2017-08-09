@@ -58,14 +58,14 @@ for step = 1 : criticalSteps
     points_test_q = getQ(points_Test_W(:, 1 : 2));
     ts_train = [(1 : size(points_train_q, 1))', points_train_q]; % tangent space, convert q info into a 2D graph
     ts_test = [(1 : size(points_test_q, 1))', points_test_q];
-    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd);
+    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Test, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH);
     % Warping original rope to current rope finished!
 
     % visualize the warping of the original training rope and the test rope
-    disp('Please double check which robot''s motion needs to be warped!');
     fig2_handle = figure(2);
     set(fig2_handle, 'position', [962 562 958 434]);
-    orig_fig = subplot(1,2,1); scatter(points_W(:, 1), points_W(:, 2), 'r*'); title('Train'); % plot the original rope 2-D shape
+    k = picIdx(sb);
+    orig_fig = subplot(1,2,1); scatter(points_W{k}(:, 1), points_W{k}(:, 2), 'r*'); title('Train'); % plot the original rope 2-D shape
     warp_fig = subplot(1,2,2); scatter(points_Test_W(:, 1), points_Test_W(:, 2), 'r*'); title('Test'); % plot the test rope
     draw_grid([-0.5 0.8], [1 -0.7], warp, 20, orig_fig, warp_fig)
     subplot(orig_fig); axis equal; xlim([-0.5,1]); ylim([-0.7,0.8]); drawnow;

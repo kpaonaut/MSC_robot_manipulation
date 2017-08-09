@@ -6,8 +6,8 @@
 %  MSC Lab, UC Berkeley
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, points_Test_W, PtCld_Train, PtCld_Test, si, ...
-    robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd)
+function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Test, points_Test_W, PtCld_Train, PtCld_Test, si, ...
+    robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd, LENGTH)
 
 % actually PtCld_Train and PtCld_Test are degrees here! in tangent space!
 
@@ -53,7 +53,7 @@ if rigidCompensate == true
 end
 
 %% create New_LTT_Data after warping
-for i = robot_idx
+for idx = robot_idx
     for j = stepBegin : stepEnd % step range in one critical step
         if ManOrNot{idx}(j) == 0 % if a robot is neither moving to a point nor manipulating
             % stays still
@@ -62,7 +62,8 @@ for i = robot_idx
             end
         elseif ManOrNot{idx}(j) == -1 % if the robot aims at a static point on rope
             graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
-            graspPtTest = warp(PtCld_Train(graspPtTrain)); % the TS coord of cpd-warped grasping pt
+            graspPtTest = warp(PtCld_Train(graspPtTrain, 1:2)'); % the TS coord of cpd-warped grasping pt
+            graspPtTest = graspPtTest';
             num = dsearchn(PtCld_Test(:, 1:2), graspPtTest); % the index of the closest point in TS
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(num, 1:2) * 1000; % unit must be mm!
         else % if the robot is to manipulate the rope
@@ -71,7 +72,7 @@ for i = robot_idx
             % should integrate from it. otherwise do the below:
             if num > size(PtCld_Test, 1) / 2 % FIXME! grasp at near the end. integrate from the start
                 grippingPointCoord = integrate...
-                    (points_Test_W(1, 1:2), PtCld_Test, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
+                    (points_Test_W(1, 1:2), WRONG! PtCld_Test, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
             else % grasp at near the starting point, integrate from end. q also needs to change!
                 grippingPointCoord = integrate...
                     (points_Test_W(end, 1:2), PtCld_Test - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
