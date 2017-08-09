@@ -58,7 +58,8 @@ for step = 1 : criticalSteps
     points_test_q = getQ(points_Test_W(:, 1 : 2));
     ts_train = [(1 : size(points_train_q, 1))', points_train_q]; % tangent space, convert q info into a 2D graph
     ts_test = [(1 : size(points_test_q, 1))', points_test_q];
-    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Test, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH);
+    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Test, points_W{step + 1}, points_Test_W,...
+        ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH);
     % Warping original rope to current rope finished!
 
     % visualize the warping of the original training rope and the test rope

@@ -6,19 +6,26 @@
 %  MSC Lab, UC Berkeley
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Test, points_Test_W, PtCld_Train, PtCld_Test, si, ...
+function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Test_old, train_goal_q, points_Test_W, train_q, test_q, si, ...
     robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd, LENGTH)
 
-% actually PtCld_Train and PtCld_Test are degrees here! in tangent space!
+% actually train_q and test_q are degrees here! in tangent space!
+LTT_Data_Test = LTT_Data_Test_old; % init
 
 %% specify which arm to warp
 if nargin < 6
     robot_idx = [1,2];
 end
-    
+
+%% Deal with the issue of angles jumping from -179 to +180.
+% FIXME!!! might need rigid compensate for a 360-degree-translation!
+test_q = continuous(test_q);
+train_q = continuous(train_q); % make the degree seires continuous
+X = test_q;
+Y = train_q;
+
 %% CPD
-X = PtCld_Test;
-Y = PtCld_Train;
+
 % rigid rotation first
 if rigidCompensate == true
     opt = [];
@@ -59,23 +66,24 @@ for idx = robot_idx
             % stays still
             if j ~= 1
                 LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = LTT_Data_Test.TCP_xyzwpr_W{idx}(j - 1, 1:2);
-            end
+            end % if j == 1, the robot stays still, at origin!
         elseif ManOrNot{idx}(j) == -1 % if the robot aims at a static point on rope
             graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
-            graspPtTest = warp(PtCld_Train(graspPtTrain, 1:2)'); % the TS coord of cpd-warped grasping pt
+            graspPtTest = warp(train_q(graspPtTrain, 1:2)'); % the TS coord of cpd-warped grasping pt
             graspPtTest = graspPtTest';
-            num = dsearchn(PtCld_Test(:, 1:2), graspPtTest); % the index of the closest point in TS
+            num = dsearchn(test_q(:, 1:2), graspPtTest); % the index of the closest point in TS
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(num, 1:2) * 1000; % unit must be mm!
         else % if the robot is to manipulate the rope
             num = graspPts{idx}(j); % index of grasping points here!
-            % FIXME! if one part of the rope is fixed by the other gripper,
+            test_goal_q = warp(train_goal_q')'; % get discrete dots!
+            test_goal_q = resize(test_goal_q, size(test_q, 1)); % interpolate values to get a new set of points in TS, with x == 1..nTest
             % should integrate from it. otherwise do the below:
-            if num > size(PtCld_Test, 1) / 2 % FIXME! grasp at near the end. integrate from the start
+            if num > size(test_q, 1) / 2 % FIXME! grasp at near the end. integrate from the start
                 grippingPointCoord = integrate...
-                    (points_Test_W(1, 1:2), WRONG! PtCld_Test, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
+                    (points_Test_W(1, 1:2), test_goal_q, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
             else % grasp at near the starting point, integrate from end. q also needs to change!
                 grippingPointCoord = integrate...
-                    (points_Test_W(end, 1:2), PtCld_Test - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
+                    (points_Test_W(end, 1:2), test_q_goal - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
             end
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = grippingPointCoord * 1000; % unit must be mm!    
         end
