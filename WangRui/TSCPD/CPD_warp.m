@@ -6,7 +6,7 @@
 %  MSC Lab, UC Berkeley
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Test_old, train_goal_q, points_Test_W, train_q, test_q, si, ...
+function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Test_old, train_goal_q, points_Test_W, train_q, test_q, si, ...
     robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd, LENGTH)
 
 % actually train_q and test_q are degrees here! in tangent space!
@@ -21,11 +21,12 @@ end
 % FIXME!!! might need rigid compensate for a 360-degree-translation!
 test_q = continuous(test_q);
 train_q = continuous(train_q); % make the degree seires continuous
+train_goal_q = continuous(train_goal_q);
 X = test_q;
 Y = train_q;
 
 %% CPD
-
+%rigidCompensate = 1;
 % rigid rotation first
 if rigidCompensate == true
     opt = [];
@@ -49,17 +50,25 @@ opt.method = 'nonrigid'; % whether or not to use rigid registration
 opt.fgt = 0;
 opt.viz = 1;          % show every iteration
 opt.beta = 1;      %(default 2) Gaussian smoothing filter size. Forces rigidity.
-opt.lambda = 25;    %(default 3) Regularization weight. 
+opt.lambda = 5;    %(default 3) Regularization weight.
+% opt.viz=1;              % show every iteration
+% opt.outliers=0.5;         % don't account for outliers
+% opt.normalize=1;        % normalize to unit variance and zero mean before registering (default)
+% opt.corresp=1;          % compute correspondence vector at the end of registration (not being estimated by default)
+% opt.max_it=100;         % max number of iterations
+% opt.tol=1e-9;          % tolerance!
 % registering Y to X
-Transform = cpd_register(X,Y,opt);
+Transform = cpd_register(X, Y, opt);
 % generate warp function handle
 warp = @(x) (cpd_transform(x', Transform))';
 
 if rigidCompensate == true
     warp = @(x) warp(warp_rigid(x));
 end
-
+%% DEBUG
+a = warp([400; 87.9])';
 %% create New_LTT_Data after warping
+num = 0;
 for idx = robot_idx
     for j = stepBegin : stepEnd % step range in one critical step
         if ManOrNot{idx}(j) == 0 % if a robot is neither moving to a point nor manipulating
@@ -71,19 +80,25 @@ for idx = robot_idx
             graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
             graspPtTest = warp(train_q(graspPtTrain, 1:2)'); % the TS coord of cpd-warped grasping pt
             graspPtTest = graspPtTest';
-            num = dsearchn(test_q(:, 1:2), graspPtTest); % the index of the closest point in TS
+            num = dsearchn(test_q(:, 1:2), graspPtTest(1, :)); % the index of the closest point in TS
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(num, 1:2) * 1000; % unit must be mm!
         else % if the robot is to manipulate the rope
-            num = graspPts{idx}(j); % index of grasping points here!
+            % num = graspPts{idx}(j); % index of grasping points here!
+            diff = train_q(1, 2) - train_goal_q(1, 2);
+            if diff > 300
+                train_goal_q(:, 2) = train_goal_q(:, 2) + 360;
+            elseif diff < -300
+                train_goal_q(:, 2) = train_goal_q(:, 2) - 360;
+            end
             test_goal_q = warp(train_goal_q')'; % get discrete dots!
             test_goal_q = resize(test_goal_q, size(test_q, 1)); % interpolate values to get a new set of points in TS, with x == 1..nTest
             % should integrate from it. otherwise do the below:
             if num > size(test_q, 1) / 2 % FIXME! grasp at near the end. integrate from the start
                 grippingPointCoord = integrate...
-                    (points_Test_W(1, 1:2), test_goal_q, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
+                    (points_Test_W(1, 1:2), test_goal_q(:, 2), num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
             else % grasp at near the starting point, integrate from end. q also needs to change!
                 grippingPointCoord = integrate...
-                    (points_Test_W(end, 1:2), test_q_goal - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
+                    (points_Test_W(end, 1:2), test_goal_q(:, 2) - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
             end
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = grippingPointCoord * 1000; % unit must be mm!    
         end

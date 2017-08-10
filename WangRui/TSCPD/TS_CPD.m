@@ -25,6 +25,7 @@ for i = 1 : criticalSteps + 1
 load(['F:\WANGRUI\V4.0\data\Rope\Rope_',num2str(i),'.mat']); % load the training data of trajectory
 % transform points from kinect frame to world frame
 points_W{i} = transformU2W(points_U, si); % training rope transformed
+points_W{i} = setOrder(points_W{i});
 end
 
 LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
@@ -49,6 +50,7 @@ for step = 1 : criticalSteps
     % transform test rope to world frame
     points_Test_U = [[points.X]', [points.Y]', [points.Z]'];
     points_Test_W = transformU2W(points_Test_U, si);
+    points_Test_W = setOrder(points_Test_W);
 
     % CPD-Warp the robot trajectory in tangent space
     sb = stepBegins(step);
@@ -56,9 +58,11 @@ for step = 1 : criticalSteps
     rigidCompensate = 0;  % 0 or 1, whether we will use rigid transform (rotation) first
     points_train_q = getQ(points_W{step}(:, 1 : 2));
     points_test_q = getQ(points_Test_W(:, 1 : 2));
-    ts_train = [(1 : size(points_train_q, 1))', points_train_q]; % tangent space, convert q info into a 2D graph
-    ts_test = [(1 : size(points_test_q, 1))', points_test_q];
-    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Test, points_W{step + 1}, points_Test_W,...
+    points_train_q_goal = getQ(points_W{step + 1}(:, 1 : 2));
+    ts_train = extend(points_train_q); % tangent space, convert q info into a 2D graph
+    ts_test = extend(points_test_q);
+    points_train_q_goal = extend(points_train_q_goal);
+    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Test, points_train_q_goal, points_Test_W,...
         ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH);
     % Warping original rope to current rope finished!
 
