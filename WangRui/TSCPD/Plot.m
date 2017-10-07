@@ -1,7 +1,7 @@
     %% visualize the warping of the original training rope and the test rope
     %disp('Please double check which robot''s motion needs to be warped!');
     fig2_handle = figure(2);
-    set(fig2_handle, 'position', [0.962 0.562 0.958 0.434]);
+    %set(fig2_handle, 'position', [0.962 0.562 0.958 0.434]);
     orig_fig = subplot(1,2,1);
     scatter(points_Test_W(:, 1), points_Test_W(:, 2), 'ro');
     hold on
