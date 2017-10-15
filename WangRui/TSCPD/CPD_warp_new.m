@@ -6,7 +6,7 @@
 %  MSC Lab, UC Berkeley
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, PtCld_Train, PtCld_Test, si, ...
+function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, PtCld_Train, PtCld_Train_Goal, PtCld_Test, si, ...
     robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd)
 
 % actually PtCld_Train and PtCld_Test are degrees here! in tangent space!
@@ -53,7 +53,7 @@ if rigidCompensate == true
     warp = @(x) warp(warp_rigid(x));
 end
 
-P = CPD_PMatrix(X, warp(X')', Transform.sigma2, opt.outliers, 2); % Pm,n: the P that Xn is an observation of Ym, not other Y
+P = CPD_PMatrix(X, warp(Y')', Transform.sigma2, opt.outliers, 2); % Pm,n: the P that Xn is an observation of Ym, not other Y
 
 
 %% create New_LTT_Data after warping
@@ -77,11 +77,11 @@ for idx = robot_idx
             % FIXME! if one part of the rope is fixed by the other gripper,
             % should integrate from it. otherwise do the below:
             if num > size(PtCld_Test, 1) / 2 % FIXME! grasp at near the end. integrate from the start
-                PtCld_Test_ts = getOrientation(PtCld_Train, P);
+                PtCld_Test_ts = getOrientation(PtCld_Train_Goal, P);
                 grippingPointCoord = integrate...
                     (PtCld_Test(1, 1:2), PtCld_Test_ts, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
             else % grasp at near the starting point, integrate from end. q also needs to change!
-                PtCld_Test_ts = getOrientation(PtCld_Train, P);
+                PtCld_Test_ts = getOrientation(PtCld_Train_Goal, P);
                 grippingPointCoord = integrate...
                     (PtCld_Test(end, 1:2), PtCld_Test_ts - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
             end

@@ -54,7 +54,7 @@ for step = 1 : criticalSteps
     sb = stepBegins(step);
     se = stepBegins(step + 1) - 1;       
     rigidCompensate = 0;  % 0 or 1, whether we will use rigid transform (rotation) first
-    [LTT_Data_Test, warp] = CPD_warp_new(LTT_Data_Train, points_W{step}, points_Test_W, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se);
+    [LTT_Data_Test, warp] = CPD_warp_new(LTT_Data_Train, points_W{step}, points_W{step+1}, points_Test_W, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se);
     % Warping original rope to current rope finished!
 
     %% visualize the warping of the original training rope and the test rope
