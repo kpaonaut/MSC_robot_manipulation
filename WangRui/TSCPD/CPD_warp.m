@@ -45,12 +45,8 @@ end
 
 % non rigid 
 % Set the options
-opt = [];
-opt.method = 'nonrigid'; % whether or not to use rigid registration
-opt.fgt = 0;
-opt.viz = 1;          % show every iteration
-opt.beta = 1;      %(default 2) Gaussian smoothing filter size. Forces rigidity.
-opt.lambda = 5;    %(default 3) Regularization weight.
+%    %(default 3) Regularization weight.
+% opt.method='nonrigid';
 % opt.viz=1;              % show every iteration
 % opt.outliers=0.5;         % don't account for outliers
 % opt.normalize=1;        % normalize to unit variance and zero mean before registering (default)
@@ -58,15 +54,29 @@ opt.lambda = 5;    %(default 3) Regularization weight.
 % opt.max_it=100;         % max number of iterations
 % opt.tol=1e-9;          % tolerance!
 % registering Y to X
-Transform = cpd_register(X, Y, opt);
+opt = [];
+opt.method = 'nonrigid'; % whether or not to use rigid registration
+opt.fgt = 0;
+opt.viz = 1;          % show every iteration
+opt.beta = 1;      %(default 2) Gaussian smoothing filter size. Forces rigidity.
+opt.lambda = 10;
+% original: beta=1; lambda = 5;
+opt.max_it=100;         % max number of iterations
+opt.tol=1e-9;
+opt.outliers = 0.000;
+Transform = cpd_register([X(:, 1)*10, X(:, 2)], Y, opt);% registering Y to X
 % generate warp function handle
-warp = @(x) (cpd_transform(x', Transform))';
+warp = @(x) (cpd_transform(x', Transform))'; % x is column
 
 if rigidCompensate == true
-    warp = @(x) warp(warp_rigid(x));
+    warp = @(x) warp(warp_rigid([x(:, 1)*10, x(:, 2)]));
 end
+Z = warp(Y')';
+P = CPD_PMatrix([X(:, 1)*10, X(:, 2)], Z, Transform.sigma2, opt.outliers, 2); % Pm,n: the P that Xn is an observation of Ym, not other Y
+
+checkP = sum(P, 1);
 %% DEBUG
-a = warp([400; 87.9])';
+%a = warp([400; 87.9])';
 %% create New_LTT_Data after warping
 num = 0;
 for idx = robot_idx
@@ -77,10 +87,11 @@ for idx = robot_idx
                 LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = LTT_Data_Test.TCP_xyzwpr_W{idx}(j - 1, 1:2);
             end % if j == 1, the robot stays still, at origin!
         elseif ManOrNot{idx}(j) == -1 % if the robot aims at a static point on rope
-            graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
-            graspPtTest = warp(train_q(graspPtTrain, 1:2)'); % the TS coord of cpd-warped grasping pt
-            graspPtTest = graspPtTest';
-            num = dsearchn(test_q(:, 1:2), graspPtTest(1, :)); % the index of the closest point in TS
+             graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
+%             graspPtTest = warp([train_q(graspPtTrain, 1)*10, train_q(graspPtTrain, 2)]'); % the TS coord of cpd-warped grasping pt
+%             graspPtTest = graspPtTest';
+%             num = dsearchn(test_q(:, 1:2), graspPtTest(1, :)); % the index of the closest point in TS
+            [~ ,num] = max(P(:, graspPtTrain));
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(num, 1:2) * 1000; % unit must be mm!
         else % if the robot is to manipulate the rope
             % num = graspPts{idx}(j); % index of grasping points here!
@@ -90,21 +101,26 @@ for idx = robot_idx
             elseif diff < -300
                 train_goal_q(:, 2) = train_goal_q(:, 2) - 360;
             end
-            test_goal_q = warp(train_goal_q')'; % get discrete dots!
-            test_goal_q = resize(test_goal_q, size(test_q, 1)); % interpolate values to get a new set of points in TS, with x == 1..nTest
+            % test_goal_q = warp(train_goal_q')'; % get discrete dots!
+            % using warping
+            test_goal_q = P'*(train_goal_q(:, 2));
+            %test_goal_q = resize(test_goal_q, size(test_q, 1)); % interpolate values to get a new set of points in TS, with x == 1..nTest
             % should integrate from it. otherwise do the below:
             if num > size(test_q, 1) / 2 % FIXME! grasp at near the end. integrate from the start
                 grippingPointCoord = integrate...
-                    (points_Test_W(1, 1:2), test_goal_q(:, 2), num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
+                    (points_Test_W(1, 1:2), test_goal_q, num, LENGTH, 1); % calculate where the gripping point (x, y) on rope should be
             else % grasp at near the starting point, integrate from end. q also needs to change!
                 grippingPointCoord = integrate...
-                    (points_Test_W(end, 1:2), test_goal_q(:, 2) - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
+                    (points_Test_W(end, 1:2), test_goal_q - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
             end
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = grippingPointCoord * 1000; % unit must be mm!    
+            
+            recoverPlot([0, 0], train_q(:, 2), LENGTH, 1); % just to check shape, position doesn't matter!
+            recoverPlot([0, 0], test_goal_q, LENGTH, 1);
         end
         LTT_Data_Test.TCP_T_W{idx}(:, :, j) = xyzwpr2T(LTT_Data_Test.TCP_xyzwpr_W{idx}(j, :));
         LTT_Data_Test.TCP_T_B{idx}(:, :, j) = FrameTransform(LTT_Data_Test.TCP_T_W{idx}(:, :, j), 'T', 'W2B', si, idx);
-        LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :) = T2xyzwpr(LTT_Data_Test.TCP_T_B{idx}(:, :, j));
         LTT_Data_Test.DesJntPos{idx}(j, :) = fanucikine(LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :), si.ri{idx}, LTT_Data_Train.DesJntPos{idx}(j, :));
+        
     end
 end

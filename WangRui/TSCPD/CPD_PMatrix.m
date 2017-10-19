@@ -20,6 +20,7 @@ for m = 1 : M+1
         else
             Ppre(n, m) = 1/N;
         end
+        if Ppre(n, m) < 10e-10, Ppre(n, m) = 0; end
     end
 end
 for m = 1 : M + 1
