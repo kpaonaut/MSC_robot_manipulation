@@ -18,11 +18,11 @@ global LENGTH; LENGTH = 0.02; % -SUBJECT TO CHANGE; unit: m
 WarpIndex = [1, 2]; % WarpIndex can be 1, 2, or [1, 2] --SUBJECT TO CHANGE
 
 %% Load all training data and transform them into the world frame
-load('F:\WANGRUI\V4.0\data\Rope\Traj_Train.mat'); % load the training trajectory
+load('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\straightening\trainingTraj.mat'); % load the training trajectory
 
 % load all training ropes:
 for i = 1 : criticalSteps + 1
-load(['F:\WANGRUI\V4.0\data\Rope\Rope_',num2str(i),'.mat']); % load the training data of trajectory
+load(['F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\straightening\trainingRope_',num2str(i),'.mat']); % load the training data of trajectory
 % transform points from kinect frame to world frame
 points_W{i} = transformU2W(points_U, si); % training rope transformed
 end
@@ -50,9 +50,15 @@ for step = 1 : criticalSteps
     points_Test_U = [[points.X]', [points.Y]', [points.Z]'];
     points_Test_W = transformU2W(points_Test_U, si);
     points_Test_W = setOrder(points_Test_W);
+    
 %%
     points_Test_W = setOrder(points_Test_W); % set rope node enumerating order
+    points_W{1} = setOrder(points_W{1});
+    points_W{2} = setOrder(points_W{2});
+    scatter(points_W{1}(:, 1), points_W{1}(:, 2));hold on
+    scatter(points_Test_W(:, 1), points_Test_W(:, 2));
     
+%%    
     % CPD-Warp the robot trajectory in tangent space
     sb = stepBegins(step);
     se = stepBegins(step + 1) - 1;       
@@ -66,6 +72,8 @@ for step = 1 : criticalSteps
     
     sb = stepBegins(step);
     se = stepBegins(step + 1) - 1;    
+    scatter(ts_train(:, 1), ts_train(:, 2));hold on
+    scatter(ts_test(:, 1), ts_test(:, 2));
     [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Train, train_goal_q, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH);
     % Warping original rope to current rope finished!
 
