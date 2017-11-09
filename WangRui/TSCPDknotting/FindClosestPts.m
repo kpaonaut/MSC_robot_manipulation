@@ -5,7 +5,7 @@
 %  Created by Rui Wang, 08/03/2017       
 %  MSC Lab, UC Berkeley
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [closestPts, ManOrNot, picIdx, stepBegin] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W) % points_W is an array of rope pics
+function [closestPts, ManOrNot, picIdx, stepBegin, gotoinit] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W) % points_W is an array of rope pics
 
 % set grip state representatives
 gripKeep  = [0 0 0 0 0 1]; % under this state, the grip does not change
@@ -13,6 +13,8 @@ gripClose = [3 0 0 1 0 1]; % under this state, the grip closes
 gripOpen  = [0 0 0 1 0 1]; % under this state, the grip opens
 
 totalSteps = size(LTT_Data_Train.GrpCmd{1}, 1);
+gotoinit{1} = zeros(totalSteps, 1); % set to 0 by default
+gotoinit{2} = zeros(totalSteps, 1);
 % define rope and gripper status in each step
 for idx = WarpIndex
     [~, GripCloseSteps] = ismember(gripClose, LTT_Data_Train.GrpCmd{idx}, 'rows'); % find steps where gripper closes
@@ -51,6 +53,7 @@ for idx = WarpIndex
             gripOrNot{idx}(step) = 0;
         end
     end
+    gripOrNot{idx}(1) = 0;
     % Warning! As the gripper opens at the end of the step, it is still closed along the way. So gripper
     % state needs modification.
     for step = 2 : totalSteps
@@ -93,8 +96,10 @@ for idx = WarpIndex
     for step = 1 : totalSteps
         closestPts{idx}(step, :) = dsearchn(points_W{picIdx(step)}(:, 1:2)*1000, ...
         LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:2)); % built-in matlab func for closest pt
-        % points_W{idx, num} stores the whole rope, for robot No.idx's
-        % No.num step
+        % points_W{num} stores the whole rope, for robot No.idx's No.num step
+        if norm( points_W{picIdx(step)}(closestPts{idx}(step),1:2)*1000 - LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:2) ) > 50
+            gotoinit{idx}(step) = 1; % if the arm is trained to avoid occluding the rope, go to initial position
+        end
     end
     % Now closestPts{idx}(i) is the index of rope node closest to grasping
     % point if step i is grasping step; otherwise it's 0

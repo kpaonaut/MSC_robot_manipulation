@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Test_old, train_goal_q, points_Test_W, train_q, test_q, si, ...
-    robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd, LENGTH)
+    robot_idx, rigidCompensate, graspPts, ManOrNot, stepBegin, stepEnd, LENGTH, gotoinit)
 
 % actually train_q and test_q are degrees here! in tangent space!
 LTT_Data_Test = LTT_Data_Test_old; % init
@@ -101,7 +101,8 @@ for idx = robot_idx
             elseif diff < -300
                 train_goal_q(:, 2) = train_goal_q(:, 2) - 360;
             end
-            [~ ,num] = max(P(graspPts{idx}(j), :));
+            %[~ ,num] = max(P(graspPts{idx}(j), :));
+            % num should be the same as the previous one when the gripper aims at sth!
             % test_goal_q = warp(train_goal_q')'; % get discrete dots!
             % using warping
             test_goal_q = P'*(train_goal_q(:, 2));
@@ -114,14 +115,22 @@ for idx = robot_idx
                 grippingPointCoord = integrate...
                     (points_Test_W(end, 1:2), test_goal_q - 180, num, LENGTH, -1); % calculate where the gripping point (x, y) on rope should be
             end
-            LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = grippingPointCoord * 1000; % unit must be mm!    
-            
+            grippingPointCoord = grippingPointCoord + [-0.00, 0]; % HARD CODE: deviation!(offset)
+            if gotoinit{idx}(j) == 0
+                LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = grippingPointCoord * 1000; % unit must be mm!    
+                LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 3) = LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 3)+50; % lift up a bit!
+            end % otherwise same as train
             recoverPlot([0, 0], train_q(:, 2), LENGTH, 1); % just to check shape, position doesn't matter!
             recoverPlot([0, 0], test_goal_q, LENGTH, 1);
         end
-        LTT_Data_Test.TCP_T_W{idx}(:, :, j) = xyzwpr2T(LTT_Data_Test.TCP_xyzwpr_W{idx}(j, :));
-        LTT_Data_Test.TCP_T_B{idx}(:, :, j) = FrameTransform(LTT_Data_Test.TCP_T_W{idx}(:, :, j), 'T', 'W2B', si, idx);
-        LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :) = T2xyzwpr(LTT_Data_Test.TCP_T_B{idx}(:, :, j));
-        LTT_Data_Test.DesJntPos{idx}(j, :) = fanucikine(LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :), si.ri{idx}, LTT_Data_Train.DesJntPos{idx}(j, :));
+        if gotoinit{idx}(j) == 0
+            LTT_Data_Test.TCP_T_W{idx}(:, :, j) = xyzwpr2T(LTT_Data_Test.TCP_xyzwpr_W{idx}(j, :));
+            LTT_Data_Test.TCP_T_B{idx}(:, :, j) = FrameTransform(LTT_Data_Test.TCP_T_W{idx}(:, :, j), 'T', 'W2B', si, idx);
+            LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :) = T2xyzwpr(LTT_Data_Test.TCP_T_B{idx}(:, :, j));
+            LTT_Data_Test.DesJntPos{idx}(j, :) = fanucikine(LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :), si.ri{idx}, LTT_Data_Train.DesJntPos{idx}(j, :));
+        end % otherwise keep the same as train
     end
+    LTT_Data_Test.DesJntPos{idx} = LTT_Data_Test.DesJntPos{idx}(stepBegin:stepEnd, :);
+    LTT_Data_Test.ReplayTime{idx} = LTT_Data_Test.ReplayTime{idx}(stepBegin:stepEnd-1, :);
+    LTT_Data_Test.GrpCmd{idx} = LTT_Data_Test.GrpCmd{idx}(stepBegin:stepEnd, :);
 end

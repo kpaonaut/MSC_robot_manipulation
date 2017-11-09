@@ -35,13 +35,17 @@ LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
 totalSteps = size(LTT_Data_Train.GrpCmd{1}, 1);
 
 % Find the grasping point at training; also records rope and gripper state in each step
-[graspPts, ManOrNot, picIdx, stepBegins] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W);
+[graspPts, ManOrNot, picIdx, stepBegins, gotoinit] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W);
+stepBegins = [1, 5, 9, 15, 20];
 % graspPts{idx}(i) is the index of rope node closest to grasping point during grasping step i for robot idx IF GraspOrNot
 % stepBegins is the first small step of a critical step
 
 %%
 LTT_Data_Test = LTT_Data_Train; % temporarily init
-stepBegins(criticalSteps + 1) = totalSteps + 1; 
+stepBegins(criticalSteps + 1) = totalSteps + 1;
+
+tft = judgeOrder(points_W{1}); tf = 0;% judge whether need to reverse order for training. tf: for testing data, default 0
+
 for step = 1 : criticalSteps
     % Subsribe to ROS topic
     sub = rossubscriber('tracker/object'); % your PC, as ros master, should be publishing this topic (tracked obj) now
@@ -51,12 +55,19 @@ for step = 1 : criticalSteps
     % transform test rope to world frame
     points_Test_U = [[points.X]', [points.Y]', [points.Z]'];
     points_Test_W = transformU2W(points_Test_U, si);
-    points_Test_W = setOrder(points_Test_W);
+    if (step == 1) && (judgeOrder(points_Test_W) == 1)
+        tf = 1; % needs to reverse all received data hereafter!
+    end
+    if tf == 1
+        points_Test_W(:, 1) = flipud(points_Test_W(:, 1));
+        points_Test_W(:, 2) = flipud(points_Test_W(:, 2));
+    end
     %save('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\testingRope_5.mat', 'points_Test_W');
 %%
-    points_Test_W = setOrder(points_Test_W); % set rope node enumerating order
-    points_W{step} = setOrder(points_W{step});
-    points_W{step+1} = setOrder(points_W{step+1});
+    if tft == 1
+        points_W{step}(:, 1:2)   = [flipud(points_W{step}(:, 1)), flipud(points_W{step}(:, 2))];
+        points_W{step+1}(:, 1:2) = [flipud(points_W{step+1}(:, 1)), flipud(points_W{step+1}(:, 2))];
+    end
     scatter(points_W{step}(:, 1), points_W{step}(:, 2));hold on
     scatter(points_Test_W(:, 1), points_Test_W(:, 2));
     
@@ -71,11 +82,11 @@ for step = 1 : criticalSteps
     ts_train = [(1 : size(points_train_q, 1))', points_train_q]; % tangent space, convert q info into a 2D graph
     ts_test = [(1 : size(points_test_q, 1))', points_test_q]; % all x-axis is unscaled! [1, 2, 3...]
     train_goal_q = [(1 : size(train_goal_q, 1))', train_goal_q];
-     
+    
     scatter(ts_train(:, 1), ts_train(:, 2));hold on
     scatter(ts_test(:, 1), ts_test(:, 2));
 %%
-    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Train, train_goal_q, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH);
+    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Train, train_goal_q, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH, gotoinit);
     % Warping original rope to current rope finished!
 
     % visualize the warping of the original training rope and the test rope
@@ -109,11 +120,12 @@ for step = 1 : criticalSteps
     save('F:\TeTang\V4.0\CFS_ver1.1\dataLTT\UCBTest.mat', 'LTT_Data_UCBtest');
     % CFS check
     CFS_Main
-    input('Use CFS toolbox to check collision. Press any key to execute the motion!!!')
+    %input('Use CFS toolbox to check collision. Press any key to execute the motion!!!')
 
 
     %% Finally run the robot
     % Brake Off
+    
     wasStopped = tg_start_stop('start');
     wasBrakeOff = brake_on_off(si.ParamSgnID, 'off');
     % Run!
