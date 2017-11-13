@@ -93,6 +93,11 @@ for idx = robot_idx
 %             num = dsearchn(test_q(:, 1:2), graspPtTest(1, :)); % the index of the closest point in TS
             [~ ,num] = max(P(graspPtTrain, :));
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(num, 1:2) * 1000; % unit must be mm!
+            if j < 20 && j >= 14 % if last but one step!
+                LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 4) = -180;
+                LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 5) = 0;
+                LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 6) = test_q(num, 2);
+            end
         else % if the robot is to manipulate the rope
             % num = graspPts{idx}(j); % index of grasping points here!
             diff = train_q(1, 2) - train_goal_q(1, 2);
@@ -131,6 +136,6 @@ for idx = robot_idx
         end % otherwise keep the same as train
     end
     LTT_Data_Test.DesJntPos{idx} = LTT_Data_Test.DesJntPos{idx}(stepBegin:stepEnd, :);
-    LTT_Data_Test.ReplayTime{idx} = LTT_Data_Test.ReplayTime{idx}(stepBegin:stepEnd-1, :);
+    LTT_Data_Test.ReplayTime{idx} = LTT_Data_Test.ReplayTime{idx}(stepBegin:stepEnd-1, :)*2;
     LTT_Data_Test.GrpCmd{idx} = LTT_Data_Test.GrpCmd{idx}(stepBegin:stepEnd, :);
 end

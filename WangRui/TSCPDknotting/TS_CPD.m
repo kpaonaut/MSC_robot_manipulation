@@ -23,7 +23,7 @@ load('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\Wan
 for i = 1 : criticalSteps + 1
 load(['F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\trainingRope_',num2str(i),'.mat']); % load the training data of trajectory
 % transform points from kinect frame to world frame
-points_U = [points_U, points_U(:, 2)];
+%points_U = [points_U, points_U(:, 2)];
 points_W{i} = transformU2W(points_U, si); % training rope transformed
 points_W{i} = points_W{i}(:, 1:2);
 end
@@ -34,9 +34,15 @@ LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
 %% Generate trajectory
 totalSteps = size(LTT_Data_Train.GrpCmd{1}, 1);
 
+tft = judgeOrder(points_W{1});
+if tft == 1
+    for k = 1:criticalSteps
+        points_W{k}(:, 1:2)   = [flipud(points_W{k}(:, 1)), flipud(points_W{k}(:, 2))];
+    end
+end
 % Find the grasping point at training; also records rope and gripper state in each step
 [graspPts, ManOrNot, picIdx, stepBegins, gotoinit] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W);
-stepBegins = [1, 5, 9, 15, 20];
+stepBegins = [1, 7, 14, 20, 20];
 % graspPts{idx}(i) is the index of rope node closest to grasping point during grasping step i for robot idx IF GraspOrNot
 % stepBegins is the first small step of a critical step
 
@@ -44,8 +50,8 @@ stepBegins = [1, 5, 9, 15, 20];
 LTT_Data_Test = LTT_Data_Train; % temporarily init
 stepBegins(criticalSteps + 1) = totalSteps + 1;
 
-tft = judgeOrder(points_W{1}); tf = 0;% judge whether need to reverse order for training. tf: for testing data, default 0
-
+tf = 0;% judge whether need to reverse order for training. tf: for testing data, default 0
+%%
 for step = 1 : criticalSteps
     % Subsribe to ROS topic
     sub = rossubscriber('tracker/object'); % your PC, as ros master, should be publishing this topic (tracked obj) now
@@ -64,10 +70,6 @@ for step = 1 : criticalSteps
     end
     %save('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\testingRope_5.mat', 'points_Test_W');
 %%
-    if tft == 1
-        points_W{step}(:, 1:2)   = [flipud(points_W{step}(:, 1)), flipud(points_W{step}(:, 2))];
-        points_W{step+1}(:, 1:2) = [flipud(points_W{step+1}(:, 1)), flipud(points_W{step+1}(:, 2))];
-    end
     scatter(points_W{step}(:, 1), points_W{step}(:, 2));hold on
     scatter(points_Test_W(:, 1), points_Test_W(:, 2));
     
