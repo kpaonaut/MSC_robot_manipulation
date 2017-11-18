@@ -97,9 +97,9 @@ for idx = WarpIndex
         closestPts{idx}(step, :) = dsearchn(points_W{picIdx(step)}(:, 1:2)*1000, ...
         LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:2)); % built-in matlab func for closest pt
         % points_W{num} stores the whole rope, for robot No.idx's No.num step
-        if norm( points_W{picIdx(step)}(closestPts{idx}(step),1:2)*1000 - LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:2) ) > 50
-            gotoinit{idx}(step) = 1; % if the arm is trained to avoid occluding the rope, go to initial position
-        end
+%         if norm( points_W{picIdx(step)}(closestPts{idx}(step),1:2)*1000 - LTT_Data_Train.TCP_xyzwpr_W{idx}(step, 1:2) ) > 50
+%             gotoinit{idx}(step) = 1; % if the arm is trained to avoid occluding the rope, go to initial position
+%         end
     end
     % Now closestPts{idx}(i) is the index of rope node closest to grasping
     % point if step i is grasping step; otherwise it's 0

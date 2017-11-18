@@ -7,9 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Comunication with Ubuntu
 % Run the following commands after setting up your PC's ros master IP, and connecting it to kinect
-setenv('ROS_MASTER_URI','http://192.168.1.40:11311')
-setenv('ROS_IP','192.168.1.90')
-rosinit()
+% setenv('ROS_MASTER_URI','http://192.168.1.40:11311')
+% setenv('ROS_IP','192.168.1.90')
+% rosinit()
 
 %% General Configuration
 k = 1; % should be 1! FIXME
@@ -18,8 +18,8 @@ global LENGTH; %LENGTH = 0.02; % -SUBJECT TO CHANGE; unit: m
 WarpIndex = [1, 2]; % WarpIndex can be 1, 2, or [1, 2] --SUBJECT TO CHANGE
 
 %% Load all training data and transform them into the world frame
-load('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\trainingTraj.mat'); % load the training trajectory
-% load all training ropes:
+load('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\trainingTraj.mat');
+% load the training trajectory load all training ropes:
 for i = 1 : criticalSteps + 1
 load(['F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\trainingRope_',num2str(i),'.mat']); % load the training data of trajectory
 % transform points from kinect frame to world frame
@@ -27,7 +27,6 @@ load(['F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\Wa
 points_W{i} = transformU2W(points_U, si); % training rope transformed
 points_W{i} = points_W{i}(:, 1:2);
 end
-
 LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
 LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
 
@@ -42,7 +41,7 @@ if tft == 1
 end
 % Find the grasping point at training; also records rope and gripper state in each step
 [graspPts, ManOrNot, picIdx, stepBegins, gotoinit] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W);
-stepBegins = [1, 7, 14, 20, 20];
+stepBegins = [1, 7, 13, 19, 29];
 % graspPts{idx}(i) is the index of rope node closest to grasping point during grasping step i for robot idx IF GraspOrNot
 % stepBegins is the first small step of a critical step
 
@@ -51,6 +50,8 @@ LTT_Data_Test = LTT_Data_Train; % temporarily init
 stepBegins(criticalSteps + 1) = totalSteps + 1;
 
 tf = 0;% judge whether need to reverse order for training. tf: for testing data, default 0
+step=1;
+
 %%
 for step = 1 : criticalSteps
     % Subsribe to ROS topic
@@ -69,7 +70,7 @@ for step = 1 : criticalSteps
         points_Test_W(:, 2) = flipud(points_Test_W(:, 2));
     end
     %save('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\testingRope_5.mat', 'points_Test_W');
-%%
+
     scatter(points_W{step}(:, 1), points_W{step}(:, 2));hold on
     scatter(points_Test_W(:, 1), points_Test_W(:, 2));
     
@@ -87,10 +88,14 @@ for step = 1 : criticalSteps
     
     scatter(ts_train(:, 1), ts_train(:, 2));hold on
     scatter(ts_test(:, 1), ts_test(:, 2));
+    
 %%
     [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Train, train_goal_q, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH, gotoinit);
     % Warping original rope to current rope finished!
-
+    for i=1:size(LTT_Data_Test.ReplayTime{1},1)
+        LTT_Data_Test.ReplayTime{1}(i) = 4;
+        LTT_Data_Test.ReplayTime{2}(i) = 4;
+    end
     % visualize the warping of the original training rope and the test rope
     disp('Please double check which robot''s motion needs to be warped!');
 %     fig2_handle = figure(2);
@@ -111,18 +116,18 @@ for step = 1 : criticalSteps
     disp('Please double check which robot''s motion needs to be warped!');
 
 
-    %% Run CFS, which displays an animation of fanuc robot following designed trajectory
-    disp('======================================================================')
-    % Remember to check collision if workpiece location is changed substantially!
-    disp('======================================================================');
-    fig1_handle = figure(2);
-    set(fig1_handle, 'position', [962 42 958 434]);
-    % save as LTT_Data_UCBtest for CFS check
-    LTT_Data_UCBtest = LTT_Data_Test;
-    save('F:\TeTang\V4.0\CFS_ver1.1\dataLTT\UCBTest.mat', 'LTT_Data_UCBtest');
-    % CFS check
-    CFS_Main
-    %input('Use CFS toolbox to check collision. Press any key to execute the motion!!!')
+%     %% Run CFS, which displays an animation of fanuc robot following designed trajectory
+%     disp('======================================================================')
+%     % Remember to check collision if workpiece location is changed substantially!
+%     disp('======================================================================');
+%     fig1_handle = figure(2);
+%     set(fig1_handle, 'position', [962 42 958 434]);
+%     % save as LTT_Data_UCBtest for CFS check
+%     LTT_Data_UCBtest = LTT_Data_Test;
+%     save('F:\TeTang\V4.0\CFS_ver1.1\dataLTT\UCBTest.mat', 'LTT_Data_UCBtest');
+%     % CFS check
+%     CFS_Main
+%     %input('Use CFS toolbox to check collision. Press any key to execute the motion!!!')
 
 
     %% Finally run the robot
@@ -133,7 +138,7 @@ for step = 1 : criticalSteps
     % Run!
     Traj_Download_Run(LTT_Data_Test, si, 'Download', 'Run');
     % Brake on
-    wasBrakeOff = brake_on_off(si.ParamSgnID, 'on');
-    wasStopped = tg_start_stop('stop');
+%     wasBrakeOff = brake_on_off(si.ParamSgnID, 'on');
+%     wasStopped = tg_start_stop('stop');
 
 end
