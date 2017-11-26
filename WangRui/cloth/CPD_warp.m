@@ -58,10 +58,10 @@ opt = [];
 opt.method = 'nonrigid'; % whether or not to use rigid registration
 opt.fgt = 0;
 opt.viz = 1;          % show every iteration
-opt.beta = 1;      %(default 2) Gaussian smoothing filter size. Forces rigidity.
-opt.lambda = 10;
+opt.beta = .1;      %(default 2) Gaussian smoothing filter size. Forces rigidity.
+opt.lambda = 1;
 % original: beta=1; lambda = 5;
-opt.max_it=100;         % max number of iterations
+opt.max_it=300;         % max number of iterations
 opt.tol=1e-9;
 opt.outliers = 0.000;
 Transform = cpd_register([X(:, 1)*10, X(:, 2)], [Y(:, 1)*10, Y(:, 2)], opt);% registering Y to X
@@ -87,10 +87,7 @@ for idx = robot_idx
                 LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = LTT_Data_Test.TCP_xyzwpr_W{idx}(j - 1, 1:2);
             end % if j == 1, the robot stays still, at origin!
         elseif ManOrNot{idx}(j) == -1 % if the robot aims at a static point on rope
-             graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
-%             graspPtTest = warp([train_q(graspPtTrain, 1)*10, train_q(graspPtTrain, 2)]'); % the TS coord of cpd-warped grasping pt
-%             graspPtTest = graspPtTest';
-%             num = dsearchn(test_q(:, 1:2), graspPtTest(1, :)); % the index of the closest point in TS
+            graspPtTrain = graspPts{idx}(j); % the index of grasping pt during training
             [~ ,num] = max(P(graspPtTrain, :));
             LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = points_Test_W(num, 1:2) * 1000; % unit must be mm!
         else % if the robot is to manipulate the rope
