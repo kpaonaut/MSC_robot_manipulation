@@ -64,7 +64,7 @@ opt.lambda = 10;
 opt.max_it=100;         % max number of iterations
 opt.tol=1e-9;
 opt.outliers = 0.000;
-Transform = cpd_register([X(:, 1)*10, X(:, 2)], Y, opt);% registering Y to X
+Transform = cpd_register([X(:, 1)*10, X(:, 2)], [Y(:, 1)*10, Y(:, 2)], opt);% registering Y to X
 % generate warp function handle
 warp = @(x) (cpd_transform(x', Transform))'; % x is column
 
