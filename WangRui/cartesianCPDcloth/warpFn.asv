@@ -1,0 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     FANUC LRMate200iD/7L Robot Experimentor
+%       Warp LTT_Data by CPD function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Created by Te Tang, 04/17/2017       
+%  MSC Lab, UC Berkeley
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function [LTT_Data_Test, warp] = warpFn(LTT_Data_Train, PtCld_Train, PtCld_Test, si, dim, robot_idx, warp)
+%% create New_LTT_Data after warping
+LTT_Data_Test = LTT_Data_Train;
+LTT_Data_Test.PtCld = PtCld_Test;
+for i = robot_idx
+    for j = 1:size(LTT_Data_Train.TCP_T_W{i},3)
+        LTT_Data_Test.TCP_T_W{i}(:,:,j) = TPS_warp_T_2D(LTT_Data_Train.TCP_T_W{i}(:,:,j), warp);
+        LTT_Data_Test.TCP_xyzwpr_W{i}(j,:) = T2xyzwpr(LTT_Data_Test.TCP_T_W{i}(:,:,j));
+        LTT_Data_Test.TCP_T_B{i}(:,:,j) = FrameTransform(LTT_Data_Test.TCP_T_W{i}(:,:,j), 'T', 'W2B', si, i);
+        LTT_Data_Test.TCP_xyzwpr_B{i}(j,:) = T2xyzwpr(LTT_Data_Test.TCP_T_B{i}(:,:,j));
+        % Joint Position
+        LTT_Data_Test.DesJntPos{i}(j,:) = fanucikine(LTT_Data_Test.TCP_xyzwpr_B{i}(j,:), si.ri{i}, LTT_Data_Train.DesJntPos{i}(j,:));
+    end
+end

@@ -11,28 +11,22 @@ setenv('ROS_MASTER_URI','http://192.168.1.40:11311')
 setenv('ROS_IP','192.168.1.90')
 rosinit()
 
-%% General Configuration && Load all training data and transform them into the world frame
-k = 4; % For cloth, this should be very slow
+%% General Configuration
+k = 4; % should be 1! FIXME
 criticalSteps = 1; % --SUBJECT TO CHANGE; the total times of rope deformation
 global LENGTH; %LENGTH = 0.02; % -SUBJECT TO CHANGE; unit: m
 WarpIndex = [1, 2]; % WarpIndex can be 1, 2, or [1, 2] --SUBJECT TO CHANGE
 
+%% Load all training data and transform them into the world frame
 load('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\cloth\trainingTraj.mat'); % load the training trajectory
 
 % load all training ropes:
-load(['F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\cloth\trainingCloth_',num2str(1),'.mat']); % load the training data of trajectory
-% Manually set scenario!
-if strcmp(scenario, 'stretching')
-    usefulIndex = upperEdge;
-elseif strcmp(scenario, 'folding')
-    usefulIndex = preprocess(x, y); % get the indices of edge pts that we are interested in
-end
-points_U = [x(usefulIndex), y(usefulIndex), z(usefulIndex)];
+for i = 1 : criticalSteps + 1
+load(['F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\cloth\trainingCloth_',num2str(i),'.mat']); % load the training data of trajectory
+points_U = [x, y, z];
 % transform points from kinect frame to world frame
-points_W{1} = transformU2W(points_U, si); % training rope transformed
-load(['F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\cloth\trainingCloth_',num2str(2),'.mat']); % load the training data of trajectory
-points_U = [x(usefulIndex), y(usefulIndex), z(usefulIndex)];
-points_W{2} = transformU2W(points_U, si); % training rope transformed
+points_W{i} = transformU2W(points_U, si); % training rope transformed
+end
 
 LTT_Data_Train.ReplayTime{1} = k * LTT_Data_Train.ReplayTime{1};
 LTT_Data_Train.ReplayTime{2} = k * LTT_Data_Train.ReplayTime{2};
@@ -44,8 +38,7 @@ totalSteps = size(LTT_Data_Train.GrpCmd{1}, 1);
 [graspPts, ManOrNot, picIdx, stepBegins] = FindClosestPts(LTT_Data_Train, WarpIndex, points_W);
 % graspPts{idx}(i) is the index of rope node closest to grasping point during grasping step i for robot idx IF GraspOrNot
 % stepBegins is the first small step of a critical step
-graspPts{1}(:, 1) = 1; graspPts{2}(:, 1) = size(points_W{1}, 1); % FIXME HARD CODE
-% ManOrNot{1}(6) = 1; 
+
 %%
 LTT_Data_Test = LTT_Data_Train; % temporarily init
 stepBegins(criticalSteps + 1) = totalSteps + 1; 
@@ -53,50 +46,33 @@ step=1;
 for step = 1 : criticalSteps
     % Subsribe to ROS topic
     sub = rossubscriber('tracker/object'); % your PC, as ros master, should be publishing this topic (tracked obj) now
-    received_data = receive(sub,3);
+    received_data = receive(sub,3); % wait for at most 3 seconds.
     N = size(received_data.Mesh.Vertices, 1);
-    clear x y z
     x = zeros(N,1); y = x; z = x;
     for i=1:N
         x(i, 1) = received_data.Mesh.Vertices(i).X;
         y(i, 1) = received_data.Mesh.Vertices(i).Y;
         z(i, 1) = received_data.Mesh.Vertices(i).Z;
     end
-    if step == 1
-        if strcmp(scenario, 'folding')
-            usefulIndex = preprocess(x, y);
-        else
-            usefulIndex = upperEdge;
-        end
-        LENGTH = callen(x(usefulIndex), y(usefulIndex));
-    end
     % transform test rope to world frame
-    points_Test_U = [x(usefulIndex), y(usefulIndex), z(usefulIndex)];
-    points_Test_W = transformU2W(points_Test_U, si); % training rope transformed
+    points_Test_U = [x, y, z];
+    points_Test_W = transformU2W(points_Test_U, si);
+    
 %%
-    scatter(points_W{step}(:, 1), points_W{step}(:, 2), 'o');hold on
-    scatter(points_Test_W(:, 1), points_Test_W(:, 2), 'x');
-    axis equal
+    points_Test_W = setOrder(points_Test_W); % set rope node enumerating order
+    points_W{1} = setOrder(points_W{1});
+    points_W{2} = setOrder(points_W{2});
+    scatter(points_W{1}(:, 1), points_W{1}(:, 2));hold on
+    scatter(points_Test_W(:, 1), points_Test_W(:, 2));
     
 %%    
     % CPD-Warp the robot trajectory in tangent space
     sb = stepBegins(step);
     se = stepBegins(step + 1) - 1;       
     rigidCompensate = 0;  % 0 or 1, whether we will use rigid transform (rotation) first
-    points_train_q = getQ(points_W{step}(:, 1 : 2));
-    points_test_q = getQ(points_Test_W(:, 1 : 2));
-    train_goal_q = getQ(points_W{step+1}(:, 1 : 2));
-    ts_train = [(1 : size(points_train_q, 1))', points_train_q]; % tangent space, convert q info into a 2D graph
-    ts_test = [(1 : size(points_test_q, 1))', points_test_q]; % all x-axis is unscaled! [1, 2, 3...]
-    train_goal_q = [(1 : size(train_goal_q, 1))', train_goal_q];
-    
-    sb = stepBegins(step);
-    se = stepBegins(step + 1) - 1;    
-    scatter(ts_train(:, 1), ts_train(:, 2));hold on
-    scatter(ts_test(:, 1), ts_test(:, 2));
-    ylim([-180, 180]);
-    %%
-    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Train, train_goal_q, points_Test_W, ts_train, ts_test, si , WarpIndex, rigidCompensate, graspPts, ManOrNot, sb, se, LENGTH);
+    [LTT_Data_Test, warp] = CPD_warp(LTT_Data_Train, LTT_Data_Train, points_W{step+1}(:, 1:2), points_W{step}(:, 1:2),...
+        points_Test_W(:, 1:2), si , WarpIndex, rigidCompensate, ManOrNot, sb, se);
+    LTT_Data_Test_backup = LTT_Data_Test;
     % Warping original rope to current rope finished!
 
     % visualize the warping of the original training rope and the test rope
@@ -116,6 +92,7 @@ for step = 1 : criticalSteps
 %     draw_grid([-0.5 0.8], [1 -0.7], warp, 20, orig_fig, warp_fig)
 %     subplot(orig_fig); axis equal; xlim([-0.5,1]); ylim([-0.7,0.8]); drawnow;
 %     subplot(warp_fig); axis equal; xlim([-0.5,1]); ylim([-0.7,0.8]); drawnow; % plote the grid
+
     disp('Please double check which robot''s motion needs to be warped!');
 
 
@@ -134,6 +111,12 @@ for step = 1 : criticalSteps
 
 
     %% Finally run the robot
+    LTT_Data_Test.ReplayTime{1} = LTT_Data_Test.ReplayTime{1}(1:10, 1);
+    LTT_Data_Test.ReplayTime{2} = LTT_Data_Test.ReplayTime{2}(1:10, 1);
+    LTT_Data_Test.GrpCmd{1} = LTT_Data_Test.GrpCmd{1}(1:11, :);
+    LTT_Data_Test.GrpCmd{2} = LTT_Data_Test.GrpCmd{2}(1:11, :);
+    LTT_Data_Test.DesJntPos{1} = LTT_Data_Test.DesJntPos{1}(1:11, :);
+    LTT_Data_Test.DesJntPos{2} = LTT_Data_Test.DesJntPos{2}(1:11, :);
     % Brake Off
     wasStopped = tg_start_stop('start');
     wasBrakeOff = brake_on_off(si.ParamSgnID, 'off');

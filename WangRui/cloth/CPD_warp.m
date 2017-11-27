@@ -58,8 +58,8 @@ opt = [];
 opt.method = 'nonrigid'; % whether or not to use rigid registration
 opt.fgt = 0;
 opt.viz = 1;          % show every iteration
-opt.beta = .1;      %(default 2) Gaussian smoothing filter size. Forces rigidity.
-opt.lambda = 1;
+opt.beta = 1;      %(default 2) Gaussian smoothing filter size. Forces rigidity.
+opt.lambda = 10;
 % original: beta=1; lambda = 5;
 opt.max_it=300;         % max number of iterations
 opt.tol=1e-9;
@@ -114,10 +114,44 @@ for idx = robot_idx
             
             recoverPlot([0, 0], train_q(:, 2), LENGTH, 1); % just to check shape, position doesn't matter!
             recoverPlot([0, 0], test_goal_q, LENGTH, 1);
+            axis equal
+            manStep = [idx, j];
         end
         LTT_Data_Test.TCP_T_W{idx}(:, :, j) = xyzwpr2T(LTT_Data_Test.TCP_xyzwpr_W{idx}(j, :));
         LTT_Data_Test.TCP_T_B{idx}(:, :, j) = FrameTransform(LTT_Data_Test.TCP_T_W{idx}(:, :, j), 'T', 'W2B', si, idx);
         LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :) = T2xyzwpr(LTT_Data_Test.TCP_T_B{idx}(:, :, j));
         LTT_Data_Test.DesJntPos{idx}(j, :) = fanucikine(LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :), si.ri{idx}, LTT_Data_Train.DesJntPos{idx}(j, :));
     end
+end
+
+idx = manStep(1);
+j = manStep(2);
+TCP_xyzwpr_W{idx} = LTT_Data_Test.TCP_xyzwpr_W{idx}(j-1, :);
+TCP_xyzwpr_W{idx}(1, 3) = TCP_xyzwpr_W{idx}(1, 3)+50;
+TCP_T_W{idx} = xyzwpr2T(TCP_xyzwpr_W{idx});
+TCP_T_B{idx} = FrameTransform(TCP_T_W{idx}, 'T', 'W2B', si, idx);
+TCP_xyzwpr_B{idx} = T2xyzwpr(TCP_T_B{idx});
+DesJntPos{idx} = fanucikine(TCP_xyzwpr_B{idx}, si.ri{idx}, LTT_Data_Test.DesJntPos{idx}(j-1, :));
+
+TCP_xyzwpr_W{3-idx} = LTT_Data_Test.TCP_xyzwpr_W{3-idx}(j-1, :);% not lift up
+TCP_T_W{3-idx} = xyzwpr2T(TCP_xyzwpr_W{3-idx});
+TCP_T_B{3-idx} = FrameTransform(TCP_T_W{3-idx}, 'T', 'W2B', si, 3-idx);
+TCP_xyzwpr_B{3-idx} = T2xyzwpr(TCP_T_B{3-idx});
+DesJntPos{3-idx} = fanucikine(TCP_xyzwpr_B{3-idx}, si.ri{3-idx}, LTT_Data_Test.DesJntPos{3-idx}(j-1, :));
+
+for idx = 1:2
+    LTT_Data_Test.TCP_xyzwpr_W{idx}(1 : j-stepBegin, :) = LTT_Data_Test.TCP_xyzwpr_W{idx}(stepBegin:j-1, :);
+    LTT_Data_Test.TCP_xyzwpr_W{idx}(j-stepBegin+2 : stepEnd-stepBegin+2, :) = LTT_Data_Test.TCP_xyzwpr_W{idx}(j:stepEnd, :);
+    LTT_Data_Test.TCP_xyzwpr_W{idx}(j-stepBegin+1, :) = TCP_xyzwpr_W{idx};
+
+    LTT_Data_Test.DesJntPos{idx}(1 : j-stepBegin, :) = LTT_Data_Test.DesJntPos{idx}(stepBegin:j-1, :);
+    LTT_Data_Test.DesJntPos{idx}(j-stepBegin+2 : stepEnd-stepBegin+2, :) = LTT_Data_Test.DesJntPos{idx}(j:stepEnd, :);
+    LTT_Data_Test.DesJntPos{idx}(j-stepBegin+1, :) = DesJntPos{idx};
+    
+    LTT_Data_Test.ReplayTime{idx} = LTT_Data_Test.ReplayTime{idx}(stepBegin:stepEnd-1, :);
+    LTT_Data_Test.ReplayTime{idx} = [LTT_Data_Test.ReplayTime{idx}; LTT_Data_Test.ReplayTime{idx}(1)];% append one replay time
+    
+    LTT_Data_Test.GrpCmd{idx}(1 : j-stepBegin, :) = LTT_Data_Test.GrpCmd{idx}(stepBegin:j-1, :);
+    LTT_Data_Test.GrpCmd{idx}(j-stepBegin+2 : stepEnd-stepBegin+2, :) = LTT_Data_Test.GrpCmd{idx}(j:stepEnd, :);
+    LTT_Data_Test.GrpCmd{idx}(j-stepBegin+1, :) = [0 0 0 0 0 1]; % grip keep!
 end
