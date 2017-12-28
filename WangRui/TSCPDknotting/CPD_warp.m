@@ -43,16 +43,6 @@ if rigidCompensate == true
     Y = Transform_rigid.Y;
 end
 
-% non rigid 
-% Set the options
-%    %(default 3) Regularization weight.
-% opt.method='nonrigid';
-% opt.viz=1;              % show every iteration
-% opt.outliers=0.5;         % don't account for outliers
-% opt.normalize=1;        % normalize to unit variance and zero mean before registering (default)
-% opt.corresp=1;          % compute correspondence vector at the end of registration (not being estimated by default)
-% opt.max_it=100;         % max number of iterations
-% opt.tol=1e-9;          % tolerance!
 % registering Y to X
 opt = [];
 opt.method = 'nonrigid'; % whether or not to use rigid registration
@@ -122,11 +112,11 @@ for idx = robot_idx
             if gotoinit{idx}(j) == 0
                 LTT_Data_Test.TCP_xyzwpr_W{idx}(j, 1:2) = grippingPointCoord * 1000; % unit must be mm!  
             end % otherwise same as train
-            recoverPlot([0, 0], train_q(:, 2), LENGTH, 1); % just to check shape, position doesn't matter!
+            recoverPlot([0, 0], train_goal_q(:, 2), LENGTH, 1); % just to check shape, position doesn't matter!
             recoverPlot([0, 0], test_goal_q, LENGTH, 1);
             manStep = [idx, j]; % record the step of manipulation
         end
-        if gotoinit{idx}(j) == 0
+        if 0 %gotoinit{idx}(j) == 0
             LTT_Data_Test.TCP_T_W{idx}(:, :, j) = xyzwpr2T(LTT_Data_Test.TCP_xyzwpr_W{idx}(j, :));
             LTT_Data_Test.TCP_T_B{idx}(:, :, j) = FrameTransform(LTT_Data_Test.TCP_T_W{idx}(:, :, j), 'T', 'W2B', si, idx);
             LTT_Data_Test.TCP_xyzwpr_B{idx}(j, :) = T2xyzwpr(LTT_Data_Test.TCP_T_B{idx}(:, :, j));

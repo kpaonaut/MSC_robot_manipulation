@@ -11,7 +11,7 @@ fprintf('---> Now building experimentor files ...\n\n');
 
 if nargin < 1,  opt = [];  end
 if ~isfield(opt,'is_dual_arm') || isempty(opt.is_dual_arm),  opt.is_dual_arm = true;  end
-if ~isfield(opt,'relPath2Experimentor') || isempty(opt.relPath2Experimentor),  opt.relPath2Experimentor = 'experimentor\';  end
+if ~isfield(opt,'relPath2Experimentor') || isempty(opt.relPath2Experimentor),  opt.relPath2Experimentor = 'experimentor/';  end
 if ~isfield(opt,'opensys') || isempty(opt.opensys),  opt.opensys = 0;  end
 
 if opt.is_dual_arm

@@ -71,8 +71,8 @@ for step = 1 : criticalSteps
     end
     %save('F:\WANGRUI\MSC_robot_manipulation-master\MSC_robot_manipulation-master\WangRui\data\Knot\testingRope_5.mat', 'points_Test_W');
 
-    scatter(points_W{step}(:, 1), points_W{step}(:, 2));hold on
-    scatter(points_Test_W(:, 1), points_Test_W(:, 2));
+    scatter(points_W{step}(:, 1), points_W{step}(:, 2),'o','filled');hold on
+    scatter(points_Test_W(:, 1), points_Test_W(:, 2),'*','r');
     
 %%    
     % CPD-Warp the robot trajectory in tangent space

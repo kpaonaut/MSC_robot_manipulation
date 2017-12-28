@@ -5,6 +5,8 @@ for i = 1:size(q, 1) % q: column vector
     coord(i, 1) = gp(1);
     coord(i, 2) = gp(2);
 end
-plot(coord(:, 1), coord(:, 2));
-xlim([-0.5, 0.5])
+scatter(coord(:, 1), coord(:, 2), '*', 'r'); % for test
+% scatter(coord(:, 1), coord(:, 2);
+xlim([-0.1, 0.5])
+ylim([-0.1, 0.35])
 end

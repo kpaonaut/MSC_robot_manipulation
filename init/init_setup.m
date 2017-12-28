@@ -3,7 +3,7 @@
 
 clear; clc; close all;
 
-filepath = 'F:\Common Tool\03Toolbox';
+filepath = '~/Aray_THU/Overseas/OverseasLab2017/MSC_Lab/DeformableManipulation/Toolbox';
 
 %% Check if the paths are already added
 pathCell = regexp(path, pathsep, 'split');
@@ -21,7 +21,7 @@ if ~onPath
     addpath(fullfile(pwd, 'experimentor'));
     
     % Robotic toolbox, http://petercorke.com/Robotics_Toolbox.html
-    run([filepath,'\rvctools\rvctools\startup_rvc.m']);
+    run([filepath,'/rvctools/rvctools/startup_rvc.m']);
     
     % Shortcuts to run certain sequences of robot motions in target PC
     addpath(fullfile(pwd, 'moveit'));
